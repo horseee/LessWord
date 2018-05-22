@@ -280,6 +280,36 @@
 		text-align: right;
 	}
 
+/* Div */
+	div .half {
+		width: 50%;
+	}
+	
+	div .flex {
+		display: flex;
+		flex-direction: row;
+	}
+
+	div .center {
+		justify-content: space-around;
+	}
+
+
+	div .portrait{
+		width: 7.5rem;
+		height: 7.5rem;
+		line-height: 7.5rem;
+		border: solid 1px #ffffff;
+		border-radius: 100%;
+		text-align: center;
+	}
+
+	div .portrait .icon:before{
+		font-size: 3rem;
+	}
+
+
+
 /* Form */
 
 	form {
@@ -347,6 +377,10 @@
 		line-height: 1.5;
 		margin: 0 0 1rem 0;
 		text-transform: uppercase;
+	}
+
+	label.center{
+		text-align: center;
 	}
 
 	input[type="text"],
@@ -437,6 +471,7 @@
 	input[type="email"],
 	select {
 		height: 2.75rem;
+		letter-spacing: 0.08rem;
 	}
 
 	textarea {
@@ -758,6 +793,12 @@
 			padding-left: 0;
 		}
 
+		ul.flex {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+		}
+
 			ul.actions li {
 				display: inline-block;
 				padding: 0 1rem 0 0;
@@ -1014,6 +1055,14 @@
 			background-color: #ffffff;
 			color: #1b1f22 !important;
 			font-weight: 600;
+		}
+
+		input[type="submit"].board,
+		input[type="reset"].board,
+		input[type="button"].board,
+		button.board,
+		.button.board {
+			width: 10rem;
 		}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,

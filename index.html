@@ -27,15 +27,15 @@
 						<div class="content">
 							<div class="inner">
 								<h1>LESSWORD</h1>
-								<p>Simplified, Minimalist, Prettily</p>
+								<p><strong>Simplified</strong> and <strong>Minimalist</strong></p>
 								<p>A simple website with only <strong>words</strong> and <strong>words</strong> and <strong>words</strong>.<br>Sigh Up and I will finish everything for you.</p>
 							</div>
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Work</a></li>
-								<li><a href="#signup"><strong>Log</strong></a></li>
+								<li><a href="#challenge">Challenge</a></li>
+								<li><a href="#wordsbook">WordsBook</a></li>
+								<li><a href="#log"><strong>Log</strong></a></li>
 								<li><a href="#about">About</a></li>
 								<li><a href="#elements">Elements</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
@@ -47,7 +47,7 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro">
+							<article id="challenge">
 								<h2 class="major">Intro</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
@@ -55,7 +55,7 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work">
+							<article id="wordsbook">
 								<h2 class="major">Work</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
@@ -70,36 +70,64 @@
 							</article>
 
 						<!-- Contact -->
-							<article id="signup">
-								<h2 class="major">Sign Up</h2>
+							<article id="log">
+								<h2 class="major">Sign In</h2>
 								<form method="post" action="#">
-									<div class="field half first">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" placeholder="Meimei Han" />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" placeholder="LiLei@zju.edu.cn" />
-									</div>
-									<div class="field half">
-										<label for="password">Password</label>
-										<input type="text" name="password" id="password" />
+									<div class="field first">
+										<label for="username">Name/Email</label>
+										<input type="text" name="username" id="username" placeholder="Meimei Han" />
 									</div>
 									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
+										<label for="password">Password</label>
+										<input type="password" name="password" id="password" />
 									</div>
 									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="special" /></li>
-										<li><input type="reset" value="Reset" /></li>
+										<li><input type="submit" value="Log In" class="special board" id="signin"/></li>
 									</ul>
 								</form>
-								<ul class="icons">
-									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
+								<hr>
+								<h2 class="major">Sign Up</h2>
+								<form method="post" action="#">
+									<div class="flex">
+										<div class="half">
+											<div class="field first">
+												<label for="name">Nickname</label>
+												<input type="text" name="name" id="name" placeholder="Meimei Han" />
+											</div>
+											<div class="field">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" placeholder="LiLei@zju.edu.cn" />
+											</div>
+											<div class="field">
+												<label for="password">Password</label>
+												<input type="password" name="password" id="password" />
+											</div>
+											<div class="field">
+												<label for="choosebook">Choose Word Set</label>
+												<div class="field">
+													<input type="checkbox" id="dic-cet4" name="dic-cet4">
+													<label for="dic-cet4">CET4</label>
+													<input type="checkbox" id="dic-cet6" name="dic-cet6">
+													<label for="dic-cet6">CET6</label>
+												</div>
+											</div>
+										</div>
+										<div class="half">
+											<div class="flex center">
+												<div class="portrait" style="margin-top:5rem">
+													<span class="icon fa-user"></span>
+												</div>
+											</div>
+											<div class="field" style="margin-top:2rem">
+												<label for="photo" class="center">Photo</label>
+											</div>
+										</div>
+									</div>
+									<ul class="actions flex">
+										<li><input type="submit" value="Register" class="special board" /></li>
+										<li><input type="reset" value="Reset" class="board"/></li>
+									</ul>
+								</form>
 							</article>
 
 						<!-- Elements -->
