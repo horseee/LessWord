@@ -1,7 +1,9 @@
 package word.server;
 
 import java.io.IOException;
+import word.server.SQL;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +26,42 @@ public class LogForm extends HttpServlet {
         String name =new String(request.getParameter("name"));
         String password = new String(request.getParameter("password"));
         
-        response.setContentType("text/html;charset=UTF-8");
+        String res = null;
+        boolean statusRes = false;
+        String ResInfo = null;
+		try {
+			res = SQL.select_get_one(0, name);
+			if (res == null) {
+				res = SQL.select_get_one(1, name);
+			}
+		} catch (Exception e) {
+			statusRes = false;
+			e.printStackTrace();
+		} 
+		
+		if (res == null) {
+			ResInfo = "Username(email)/Password wrong";
+			statusRes = false;
+		}
+		else {
+			statusRes = res.equals(password);
+			if (statusRes == true) {
+				ResInfo = "Login Success";
+			} else {
+				ResInfo = "Username(email)/Password wrong";
+			}
+		}
+		
+		System.out.println(ResInfo);
+		
+        response.setContentType("application/json;charset=utf-8");
+		response.setStatus(200);
+		PrintWriter out = response.getWriter();
+		
+		String JsonStr = "{\"success\" : " + statusRes +", \"info\":\"" + ResInfo + "\"}";
+		
+		out.write(JsonStr);
+		out.close();
         
     }
     

@@ -72,7 +72,7 @@
 						<!-- Log/Sign -->
 							<article id="log">
 								<h2 class="major">Sign In</h2>
-								<form>
+								<form name='logform'>
 									<div class="field first">
 										<label for="username">Name/Email</label>
 										<input type="text" name="username" id="LogName" placeholder="Meimei Han" />
@@ -82,27 +82,28 @@
 										<input type="password" name="logPassword" id="LogPassword" />
 									</div>
 									<ul class="actions">
-										<li><input type="submit" value="Submit" class="special board" id="LogSubmit"/></li>
+										<li><input type="register" value="Submit" class="special board" id="LogSubmit"/></li>
 									</ul>
 								</form>
 								<hr>
 								<h2 class="major">Sign Up</h2>
-								<form>
+								<form name='logform'>
 									<div class="flex">
 										<div class="half">
-											<div class="field first">
+											<div class="field first" id="DivName">
 												<label for="name">Nickname</label>
 												<input type="text" id="SignName" placeholder="Meimei Han" />
-												<p>This username has been registered</p>
+												<p type="alert" name="NameAlert">This username has been registered</p>
 											</div>
-											<div class="field">
+											<div class="field" id="DivEmail">
 												<label for="email">Email</label>
 												<input type="text" id="SignEmail" placeholder="LiLei@zju.edu.cn" />
-												<p>This email has been registered</p>
+												<p type="alert" name="EmailAlert">This email has been registered</p>
 											</div>
-											<div class="field">
+											<div class="field" id="DivPassword">
 												<label for="password">Password</label>
 												<input type="password" name="signpassword" id="SignPassword" />
+												<p type="alert" name="PasswordAlert">Password should be 6-16 characters</p>
 											</div>
 											<div class="field">
 												<label for="choosebook">Choose Word Set</label>
@@ -126,7 +127,7 @@
 										</div>
 									</div>
 									<ul class="actions flex">
-										<li><input type="submit" value="Register" class="special board" id="Register"/></li>
+										<li><input type="register" value="Register" class="special board" id="Register"/></li>
 										<li><input type="reset" value="Reset" class="board"/></li>
 									</ul>
 								</form>

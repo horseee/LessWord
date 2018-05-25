@@ -154,6 +154,13 @@
 		margin: 0 0 2rem 0;
 	}
 
+	p[type="alert"] {
+		font-size: 0.8rem;
+		letter-spacing: 0.08rem;
+		margin:0 0 0 0;
+		height: 0.8rem;
+	}
+
 	h1, h2, h3, h4, h5, h6 {
 		color: #ffffff;
 		font-weight: 600;
@@ -317,7 +324,7 @@
 	}
 
 		form .field {
-			margin: 0 0 1.5rem 0;
+			margin: 0 0 1.8rem 0;
 		}
 
 			form .field.half {
@@ -375,7 +382,7 @@
 		font-weight: 300;
 		letter-spacing: 0.2rem;
 		line-height: 1.5;
-		margin: 0 0 1rem 0;
+		margin: 0 0 0.8rem 0;
 		text-transform: uppercase;
 	}
 
@@ -983,6 +990,7 @@
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
+	input[type="register"],
 	button,
 	.button {
 		-moz-appearance: none;
@@ -1016,6 +1024,7 @@
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
+		input[type="register"]:hover,
 		button:hover,
 		.button:hover {
 			background-color: rgba(255, 255, 255, 0.075);
@@ -1024,6 +1033,7 @@
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
+		input[type="register"]:active,
 		button:active,
 		.button:active {
 			background-color: rgba(255, 255, 255, 0.175);
@@ -1032,6 +1042,7 @@
 		input[type="submit"].icon:before,
 		input[type="reset"].icon:before,
 		input[type="button"].icon:before,
+		input[type="register"]:icon:before,
 		button.icon:before,
 		.button.icon:before {
 			margin-right: 0.5em;
@@ -1040,6 +1051,7 @@
 		input[type="submit"].fit,
 		input[type="reset"].fit,
 		input[type="button"].fit,
+		input[type="register"]:fit,
 		button.fit,
 		.button.fit {
 			display: block;
@@ -1050,6 +1062,7 @@
 		input[type="submit"].special,
 		input[type="reset"].special,
 		input[type="button"].special,
+		input[type="register"]:special,
 		button.special,
 		.button.special {
 			background-color: #ffffff;
@@ -1060,6 +1073,7 @@
 		input[type="submit"].board,
 		input[type="reset"].board,
 		input[type="button"].board,
+		input[type="register"].board,
 		button.board,
 		.button.board {
 			width: 10rem;
@@ -1070,6 +1084,8 @@
 		input[type="reset"]:disabled,
 		input[type="button"].disabled,
 		input[type="button"]:disabled,
+		input[type="register"]:disabled,
+		input[type="register"]:disabled,
 		button.disabled,
 		button:disabled,
 		.button.disabled,
@@ -1085,6 +1101,7 @@
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
+	input[type="register"],
 	button {
 		line-height: calc(2.75rem - 2px);
 	}

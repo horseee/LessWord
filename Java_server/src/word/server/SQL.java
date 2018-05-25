@@ -58,4 +58,32 @@ public class SQL {
 	    }
     }
 	
+	public static String select_get_one(int operator, String data) throws SQLException, ClassNotFoundException {
+    	Connection conn = null;
+    	ResultSet rs = null;
+    	int count = 0;
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection(DB_URL,USER,PASS);
+    
+        PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[operator]);
+        	psql.setString(1, data);
+        
+        rs = psql.executeQuery(); 
+        String res = null;
+        
+        while (rs.next()) {
+        		res = rs.getString("password");
+        }
+        
+        psql.close();
+        conn.close();
+        
+        return res;
+        
+    } finally{
+        if(conn!=null) conn.close();
+    }
+}
+	
 }
