@@ -1,0 +1,316 @@
+
+@import url(font-awesome.min.css);
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+
+/* flip card*/
+    div .slide-container {
+      display: flex;
+      flex-direction: row;
+      margin-top: 3.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.075);
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+      -webkit-transition: -webkit-transform 0.4s;
+      -moz-transition: -moz-transform 0.4s;
+      -o-transition: -o-transform 0.4s;
+      transition: transform 0.4s;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      border-radius: 0.6rem;
+      width: 100%;
+      height: 20rem;
+      padding: 2rem;
+    }
+
+    .left-arrow,
+    .right-arrow,
+    .refresh{
+      flex: 0 0 10%;
+      width: 3rem;
+      height: 3rem;
+      margin: auto;
+      line-height: 3rem;
+      text-align: center;
+    }
+
+    .arrow::before,
+    .fa-refresh::before{
+      font-size: 1.5rem;
+      margin: auto;
+    }
+
+    .wrapper {
+      padding-top: 0.5rem;
+      padding-left: 1.0rem;
+      padding-right: 1.0rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .animation {
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+
+    .card.flipped {
+      -webkit-transform: rotateY( 180deg );
+      -moz-transform: rotateY( 180deg );
+      -o-transform: rotateY( 180deg );
+      transform: rotateY( 180deg );
+    }
+
+    .card .front,
+    .card .back {
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .card .back {
+        -webkit-transform: rotateY( 180deg );
+        -moz-transform: rotateY( 180deg );
+        -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+    }
+
+
+    .card .front,
+    .card .back{
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+    }
+
+/* word card layout*/
+    .word-info {
+      flex: 0 0 48%;
+      margin: auto;
+    }
+
+    .word-info .word-literal {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .word-info #pron {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-top: 1.0rem;
+    }
+
+    .word-info #pron .word-pron{
+      font-weight: 300;
+      font-family: "Arial";
+    }
+    
+    .word-line {
+      flex: 0 0 5%;
+      border-left: 0.18rem dashed #d2d2d2;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .word-detail{
+      flex: 0 0 47%;
+      text-align: center;
+      margin: auto;
+    }
+
+    .back .word-info {
+      flex: 0 0 50%;
+    }
+
+    .back .word-line {
+      flex: 0 0 5%;
+    }
+
+    .back .word-detail{
+      flex: 0 0 45%;
+    }
+
+
+
+    .word-detail .word-example-eng {
+      margin: auto;
+    }
+
+    .word-detail .word-tooltip {
+      position: absolute;
+      background: #FFF;
+      border: 0px solid #CCC;
+      border-radius: 6px;
+      top: 32%;
+      
+      -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
+      box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);
+
+      -webkit-transition: all .1s ease-out;
+      -moz-transition: all .1s ease-out;
+      -o-transition: all .1s ease-out;
+      -ms-transition: all .1s ease-out;
+      transition: all .1s ease-out;
+    }
+
+    .word-detail .word-tooltip {
+      position: relative;
+      top:0.7rem;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 0.4rem;
+      width: 100%;
+      z-index: 99;
+    }
+
+
+      .word-detail .word-tooltip::before{
+        border-color: rgba(204, 204, 204, 0);
+        border-bottom-color: transparent;
+        border-width: 11px;
+        left: 50%;
+        margin-left: -11px;
+
+      }
+
+      .word-tooltip:after, .word-tooltip:before {
+        bottom: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .word-tooltip:after {
+        border-color: rgba(239, 239, 239, 0);
+        border-bottom-color: rgba(0, 0, 0, 0.45);
+        border-width: 10px;
+        left: 50%;
+        margin-left: -10px;
+      }
+
+    .word-trans {
+      font-family: Microsoft YaHei;
+    }
+
+    .word-input-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+      .word-input-box .word-input {
+        background: rgba(0, 0, 0, 0);
+        border-top-width: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-bottom-width: 0.15rem;
+        border-bottom-color: white;
+        width: 100%;
+        font-size: 100%;
+        font-weight: 900;
+        color:transparent;
+        text-shadow: 0px 0px 0px #fff;
+        margin: 0.15rem;
+        text-align: center;
+      }
+
+
+
+/*progress bar*/
+    .progress-part{
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 1.5rem auto;
+    }
+
+    #progress-bar{
+      appearance:none;
+      width: 90%;
+      color: #000;
+      height: 0.2rem;
+      margin: 0 auto;
+    }
+
+    .progress-point{
+      height: 0.6rem;
+      width: 0.6rem;
+      border-radius: 100%;
+      border: 3px solid #137CC0;
+      background:#137CC0;
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+
+    #progress-bar::-webkit-progress-value{ /* Changes line color */
+      background: #FFF;
+      transition: all 0.4s ease-in-out;
+    }
+
+    #progress-bar::-webkit-progress-bar{ /* Changes background color */
+      background: #FFE4E1;
+    }
+
+    .border-change{
+      border-color:#fff;
+      transition: all 0.4s ease-in-out;
+    }
+
+
+/*下方单词显示方块区域*/
+    .word-container {
+      margin: 3rem auto;
+      width: 78%;
+    }
+
+    .thumb {
+        position: relative;
+        float: left;
+        overflow: hidden;
+        margin: 0.2rem;
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .cube {
+        width: 2rem;
+        height: 2rem;
+        background-color: rgba(255, 255, 255, 0.075);;
+        line-height: 2rem;
+        text-align: center;
+        font-weight: 3rem;
+        border-radius: 0.3rem;
+    }
+
+    .alt {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-color: #dccdcb;
+    }
+
+    .text {
+        position: absolute;
+        top: 0;
+    }
+
+    .uncite {
+      color: #888;
+    }
+
+
