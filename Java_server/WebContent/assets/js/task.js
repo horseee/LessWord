@@ -16,13 +16,6 @@ $(document).ready(function () {
         $('.recite-goal-today').hide();
         word.push("familiar");
 
-        $.getJSON("http://api.douban.com/book/subject/1220562?alt=xd&callback=?", function(movie){  
-            var title = movie.title['$t'];  
-            var author = movie.author;  
-            var summary = movie.summary['$t'];  
-            alert(title+'   '+author[0].name['$t']+'     '+author[1].name['$t']+'     '+summary);  
-       }); 
-
     })
 
     $('.fa-play-circle').click(function(){

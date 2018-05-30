@@ -2,31 +2,71 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 
-/* flip card*/
-    div .slide-container {
-      display: flex;
-      flex-direction: row;
-      margin-top: 3.5rem;
+
+/* goal card*/
+
+    .card .start-recite{
+      
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.075);
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
-      -webkit-transition: -webkit-transform 0.4s;
-      -moz-transition: -moz-transform 0.4s;
-      -o-transition: -o-transform 0.4s;
-      transition: transform 0.4s;
-      -webkit-transform-style: preserve-3d;
-      -moz-transform-style: preserve-3d;
-      -o-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-      border-radius: 0.6rem;
-      width: 100%;
-      height: 20rem;
-      padding: 2rem;
+/* flip card*/
+    @media screen and (min-width: 640px) {
+      div .slide-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 3.5rem;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      div .slide-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 3.5rem;
+      }
+    }
+
+    @media screen and (min-width: 640px) {
+      .card {
+        background: rgba(255, 255, 255, 0.075);
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+        -webkit-transition: -webkit-transform 0.4s;
+        -moz-transition: -moz-transform 0.4s;
+        -o-transition: -o-transform 0.4s;
+        transition: transform 0.4s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        border-radius: 0.6rem;
+        width: 100%;
+        height: 20rem;
+        padding: 2rem;
+      }
+    }
+
+    @media screen and (max-width: 640px) { 
+      .card{
+        background: rgba(255, 255, 255, 0.075);
+        margin-right: 0.5rem;
+        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+        -webkit-transition: -webkit-transform 0.4s;
+        -moz-transition: -moz-transform 0.4s;
+        -o-transition: -o-transform 0.4s;
+        transition: transform 0.4s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        border-radius: 0.6rem;
+        width: 100%;
+        height: 30rem;
+        padding: 2rem;
+      }
     }
 
     .left-arrow,
@@ -83,12 +123,22 @@
         transform: rotateY( 180deg );
     }
 
+    @media screen and (min-width: 640px) {
+      .card .front,
+      .card .back{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+      }
+    }
 
-    .card .front,
-    .card .back{
-      display: flex;
-      flex-direction: row;
-      height: 100%;
+    @media screen and (max-width: 640px) {
+      .card .front,
+      .card .back{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     }
 
 /* word card layout*/
@@ -96,11 +146,22 @@
       flex: 0 0 48%;
       margin: auto;
     }
+    
+    @media screen and (min-width: 640px) {
+      .word-info .word-literal {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
 
-    .word-info .word-literal {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-align: center;
+    @media screen and (max-width: 640px) {
+      .word-info .word-literal {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 3rem;
+      }
     }
 
     .word-info #pron {
@@ -115,12 +176,26 @@
       font-family: "Arial";
     }
     
-    .word-line {
-      flex: 0 0 5%;
-      border-left: 0.18rem dashed #d2d2d2;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+    @media screen and (min-width: 640px) {
+      .word-line {
+        flex: 0 0 5%;
+        border-left: 0.18rem dashed #d2d2d2;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
     }
+    
+    @media screen and (max-width: 640px) {
+      .word-line{
+        flex: 0 0 5%;
+        border-top: 0.18rem dashed #d2d2d2;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+    }
+
+
 
     .word-detail{
       flex: 0 0 47%;
@@ -205,11 +280,23 @@
       font-family: Microsoft YaHei;
     }
 
-    .word-input-box {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 1.5rem;
+    @media screen and (min-width: 640px) {
+      .word-input-box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .word-input-box{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1.5rem;
+        margin-top: 3rem;
+      }
     }
 
       .word-input-box .word-input {
