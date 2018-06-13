@@ -23,9 +23,6 @@ $(document).ready(function () {
         console.log("111")
     })
 
-    
-    
-
     //翻转单词卡
     var isFront = true;
     $('.refresh').click(function(){
@@ -78,26 +75,4 @@ $(document).ready(function () {
         }
         return directions[direction];
     }
-
-    $('.thumb').on('mouseenter', function (event) {
-        $(this).find('.alt').css(_getDir($(this), event)).animate({
-            top: 0,
-            left: 0
-        }, 300)
-        var color = $(this).find('strong').css("color")
-        if (color == "rgb(136, 136, 136)")
-            $(this).find('strong').css("color", "#666666")
-        else
-            $(this).find('strong').css("color", "#344444")
-    });
-
-    $('.thumb').on('mouseleave', function (event) {
-        $(this).find('.alt').animate(_getDir($(this), event), 100);
-        var color = $(this).find('strong').css("color")
-        if (color == "rgb(52, 68, 68)")
-            $(this).find('strong').css("color", "#fff")
-        else
-            $(this).find('strong').css("color", "#888")
-    });
 });
-
