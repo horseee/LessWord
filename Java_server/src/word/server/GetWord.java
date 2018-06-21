@@ -1,8 +1,12 @@
 package word.server;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +15,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+
+
 
 @WebServlet("/GetTodayWord")
 public class GetWord extends HttpServlet {
@@ -40,15 +48,40 @@ public class GetWord extends HttpServlet {
 			response.setStatus(200);
 			PrintWriter out = response.getWriter();
 			
-			String JsonStr = "{\"word\" : [";
-			int i=0;
-			for (i=0; i<wordnumber.intValue()-1; i++) {
-				JsonStr = JsonStr + "\""+wordres[i] + "\",";
-			}
-			JsonStr = JsonStr +  "\""+wordres[i] + "\"";
-			JsonStr = JsonStr + "]}";
-			System.out.println(JsonStr);
-			out.write(JsonStr);
+			JSONObject jsonObject = new JSONObject(); 
+			List<Object> list = new ArrayList<Object>();  
+			try {
+				for (int i=0; i<wordnumber.intValue(); i++) {
+					String[] wordinfo = SQL.get_word_info(wordres[i]);
+					statusRes = true;
+		            
+		            Map<String , Object> map = new HashMap<String ,Object>();  
+		            map.put("word", wordres[i]);  
+		            map.put("pron", wordinfo[0]);
+		            map.put("pronlink", wordinfo[1]);
+		            
+		            List<Object> deflist = new ArrayList<Object>();
+		            for (int j=0; j<4; j++) {
+		            		Map<String , Object> defmap = new HashMap<String ,Object>();  
+		            		defmap.put("form", wordinfo[2*j + 2]);
+		            		defmap.put("meaning", wordinfo[2*j + 3]);
+		            		deflist.add(defmap);
+		            }
+		            map.put("definition", deflist);
+		            
+		            map.put("sample_english", wordinfo[10]);
+		            map.put("sample_chinese", wordinfo[11]);
+		            map.put("sample_link", wordinfo[12]);
+		            list.add(map); 
+		       
+				}
+				jsonObject.put("wordlist", list);  
+			} catch (Exception e) {
+				statusRes = false;
+				e.printStackTrace();
+			} 
+			
+			out.write(jsonObject.toString());
 			out.close();
 			
 		} catch (Exception e) {
@@ -59,23 +92,7 @@ public class GetWord extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-	    String name =new String(request.getParameter("name"));
-	    String password = new String(request.getParameter("password"));
-	    String email = new String(request.getParameter("email"));
-	    System.out.println("new user: \nname: "+ name + "\nemail:" + email + "\npassword: "+ password);
-	    
-	    response.setContentType("text/html;charset=UTF-8");
-	    try {
-	    	   SQL.insert(0, new String[]{name, email, password});
-	    } catch (SQLException e1){
-	    		response.setStatus(403);
-	    		e1.printStackTrace();
-	    } catch (ClassNotFoundException e2) {
-			e2.printStackTrace();
-			response.setStatus(400);
-		} 
-	    response.setStatus(200);
+		
 	    
 	}
 	

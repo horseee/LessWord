@@ -19,6 +19,7 @@ public class SQL {
     											   "select * from cet4 where id = ?", 	 //operation 2
     											   "select * from cet4 where id = ?",     //operation 3
     											   "select * from toefl where id = ?",     //operation 4
+    											   "select * from word_info where word = ?", //operation 5
     									""};
     
     public static void insert(int operator, String[] data ) throws SQLException, ClassNotFoundException {
@@ -63,6 +64,42 @@ public class SQL {
 	        if(conn!=null) conn.close();
 	    }
     }
+	
+
+	public static String[] get_word_info(String word) throws SQLException, ClassNotFoundException{
+		Connection conn = null;
+	    	ResultSet rs = null;
+	    	int info_number = 13;
+	    String[] word_info = new String[info_number];
+	    try {
+	        Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	        
+	        PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[5]);
+	        psql.setString(1, word);
+	        rs = psql.executeQuery();
+	      
+	        while (rs.next()){
+	        		word_info[0] = rs.getString("pron");
+	        		word_info[1] = rs.getString("pronlink");
+	        		word_info[2] = rs.getString("def_form_1");
+	        		word_info[3] = rs.getString("def_mean_1");
+	        		word_info[4] = rs.getString("def_form_2");
+	        		word_info[5] = rs.getString("def_mean_2");
+	        		word_info[6] = rs.getString("def_form_3");
+	        		word_info[7] = rs.getString("def_mean_3");
+	        		word_info[8] = rs.getString("def_form_4");
+	        		word_info[9] = rs.getString("def_mean_4");
+	        		word_info[10] = rs.getString("sample_eng");
+	        		word_info[11] = rs.getString("sample_chn");
+	        		word_info[12] = rs.getString("sample_link");
+	        }
+	        return word_info;
+	        
+	    } finally{
+	        if(conn!=null) conn.close();
+	    }
+	}
 	
 	public static String select_get_one(int operator, String data) throws SQLException, ClassNotFoundException {
 	    	Connection conn = null;
@@ -118,7 +155,7 @@ public class SQL {
         		for (int i=0; i<word_number; i++) {
         			int wordnum = random.nextInt(max_word) + 1;
         			psql.setInt(1, wordnum);
-        			System.out.println(psql.toString());
+        			//System.out.println(psql.toString());
         			rs = psql.executeQuery(); 
         	        String res = null;
         	        
@@ -146,5 +183,5 @@ public class SQL {
 	        if(conn!=null) conn.close();
 	    }
 	}
-	
+
 }
