@@ -81,28 +81,49 @@ $(document).ready(function(){
     var PasswordIsOk = false;
     var EmailIsOk = false;
 
-    $("#LogSubmit").click(function(){
-        username = $("#LogName").val();
+    $("#LogSubmit").click(function(event){
+    		event.preventDefault();
+        username_temp = $("#LogName").val();
         password = $("#LogPassword").val();
         $.post("http://localhost:8080/Java_server/log", 
             {
-                name: username,
+                name: username_temp,
                 password: password
             },
             function(data,status,request){
-                console.log(data);
-                if (data.success == true) {
+                console.log(data.result);
+                if (data.result.success == true) {
+                		username = username_temp;
                     location.hash = '';
                     $("#LogName").val('');
                     $("#LogPassword").val('');
+                    var origin_class = $("#header > div.logo > span").prop("className").split(' ')[1];
+                    $("#header > div.logo > span").removeClass(origin_class);
+                    $("#header > div.logo > span").addClass(data.result.portrait);
+                    $("#header > div.logo").css('width', '5.5rem');
+                    $("#header").append("<style>#header .logo .icon:before{font-size: 2.5rem}</style>");
+                    $("#header > div.content > div > h1").text("hello, " + data.result.name);
+                    isLogin = true;
+                    $('.recite-goal-today').show();
+                    $('.recite-goal-today > h3').text("YOU NEED TO RECITE "+ data.result.recite +" WORDS TODAY");
+                    today_recite = data.result.recite;
+                    
+                    $('.review-goal-today').show();
+                    $('.cut-line').show();
+                    $('.login-first').hide();
+                    today_review = data.result.review;
+                    $('.review-goal-today > h3').text("You need to review "+ data.result.review+" words today");
+                    if (today_review == 0)
+                    		$('#start-review').addClass('disabled');
                 }
                 else {
-                    console.log(data.info);
+                		alert("data.result.info");
                 }
             })
     });
 
-    $("#Register").click(function(){
+    $("#Register").click(function(event){
+    		event.preventDefault();
         if (NameIsOk && PasswordIsOk && EmailIsOk) {
             username = $("#SignName").val();
             email = $("#SignEmail").val();
@@ -120,6 +141,10 @@ $(document).ready(function(){
                 },
                 function(data,status){  
                     location.hash = '';
+                    if (recite_toefl == 1) today_recite = today_recite + 4680;
+                    if (recite_cet4 == 1) today_recite = today_recite + 3596;
+                    if (recite_cet6 == 1) today_recite = today_recite + 1000;
+                    today_recite = today_recite / day_choose;
                     word_total = 0;
                     day_choose = 30;
                     recite_toefl = -1;
@@ -134,7 +159,15 @@ $(document).ready(function(){
                     $("#header > div.logo > span").addClass(user_portrait);
                     $("#header > div.logo").css('width', '5.5rem');
                     $("#header").append("<style>#header .logo .icon:before{font-size: 2.5rem}</style>");
+                    $("#header > div.content > div > h1").text("hello, " + username);
+                    isLogin = true;
+                    $('.recite-goal-today').show();
+                    $('.review-goal-today').show();
+                    $('.cut-line').show();
+                    $('.login-first').hide();
                     
+                    
+                    today_review = 0;
             })
         }
     });

@@ -78,8 +78,11 @@ public class SignForm extends HttpServlet {
         String portrait = new String(request.getParameter("portrait"));
         
         String cet4 = new String(request.getParameter("cet4"));
+        if (cet4.equals("-1")) cet4 = "0";
         String cet6 = new String(request.getParameter("cet6"));
+        if (cet6.equals("-1")) cet6 = "0";
         String toefl = new String(request.getParameter("toefl"));
+        if (toefl.equals("-1")) toefl = "0";
         String day = new String(request.getParameter("day"));
         
         System.out.println("new user: \nname: "+ name + "\nemail:" + email + "\npassword: "+ password);
@@ -87,7 +90,8 @@ public class SignForm extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         try {
-        	   SQL.insert(0, new String[]{name, email, password, portrait});
+        	   SQL.insert(0, new String[]{name, email, password, portrait, cet4, cet6, toefl, day});
+        	   SQL.create_own_word_book(cet4, cet6, toefl, name);
         } catch (SQLException e1){
         		response.setStatus(403);
         		e1.printStackTrace();

@@ -53,12 +53,22 @@
 								<div class="slide-container">
 									<div class="left-arrow refresh">
 										<span class="icon fa-refresh"></span>
+										<span class="icon fa-heart"></span>
 									</div>
 
 									<div class="card">
+										<div class="login-first">
+											<h4> I don't know who you are. Please <strong> log in </strong> first</h4>
+											<button class="to-log"> Click me to Log in</button>
+										</div>
 										<div class="recite-goal-today">
 											<h3> You need to recite 100 words today</h3>
-											<button class="start-recite" id = "start-recite">start!</button>
+											<button class="start-task" id = "start-recite">start!</button>
+										</div>
+										<div class="cut-line"></div>
+										<div class="review-goal-today">
+											<h3> You need to review 100 words today</h3>
+											<button class="start-task" id = "start-review">start!</button>
 										</div>
 										<div class="front">
 											<div class="word-info">
@@ -142,7 +152,7 @@
 										<input type="password" name="logPassword" id="LogPassword" />
 									</div>
 									<ul class="actions">
-										<li><input type="register" value="Log" class="special board" id="LogSubmit"/></li>
+										<li><button type="register" value="Log" class="special board" id="LogSubmit">Log</button></li>
 									</ul>
 								</form>
 								<hr>
@@ -230,8 +240,8 @@
 										</div>
 									</div>
 									<ul class="actions flex">
-										<li><input type="register" value="Register" class="special board" id="Register"/></li>
-										<li><input type="reset" value="Reset" class="board"/></li>
+										<li><button type="register" value="Register" class="special board" id="Register">Register</button></li>
+										<li><button type="reset" value="Reset" class="board">Reset</button></li>
 									</ul>
 								</form>
 							</article>

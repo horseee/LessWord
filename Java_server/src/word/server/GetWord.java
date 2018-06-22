@@ -31,13 +31,14 @@ public class GetWord extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String name =new String(request.getParameter("name"));
         Integer wordnumber = new Integer(request.getParameter("wordnumber"));
-        Integer wordset = new Integer(request.getParameter("wordset"));
+        String type = new String(request.getParameter("type"));
         
         String[] wordres = null;
         boolean statusRes = false;
         String ResInfo = null;
 		try {
-			wordres = SQL.get_word_for_user(wordnumber.intValue(), wordset.intValue());
+			//wordres = SQL.get_word_for_user(wordnumber.intValue(), 0);
+			wordres = SQL.get_word_for_user(wordnumber.intValue(), name, type);
 		} catch (Exception e) {
 			statusRes = false;
 			e.printStackTrace();
@@ -52,11 +53,13 @@ public class GetWord extends HttpServlet {
 			List<Object> list = new ArrayList<Object>();  
 			try {
 				for (int i=0; i<wordnumber.intValue(); i++) {
-					String[] wordinfo = SQL.get_word_info(wordres[i]);
+					String[] wordinfo = SQL.get_word_info(wordres[3 * i]);
 					statusRes = true;
 		            
 		            Map<String , Object> map = new HashMap<String ,Object>();  
-		            map.put("word", wordres[i]);  
+		            map.put("word", wordres[3 * i]); 
+		            map.put("wordset", wordres[3 * i + 1]);
+		            map.put("wordid", wordres[3 * i + 2]);
 		            map.put("pron", wordinfo[0]);
 		            map.put("pronlink", wordinfo[1]);
 		            

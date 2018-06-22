@@ -5,8 +5,16 @@
 
 /* goal card*/
 
-    .card .start-recite{
-      
+
+    .cut-line {
+      border-bottom: 0.18rem dashed #d2d2d2;
+      margin-top: 3rem;
+      margin-bottom:  1.5rem;
+      margin-right: 13rem;
+    }
+
+    .review-goal-today {
+      margin-bottom: 2rem;
     }
 
 /* flip card*/
@@ -69,7 +77,6 @@
       }
     }
 
-    .left-arrow,
     .right-arrow,
     .refresh{
       flex: 0 0 10%;
@@ -78,12 +85,26 @@
       margin: auto;
       line-height: 3rem;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    
+    .left-arrow {
+    	  flex: 0 0 10%;
+      width: 3rem;
+      height: 3rem;
+      margin: auto;
+      line-height: 3rem;
+      text-align: center;
     }
 
-    .arrow::before,
-    .fa-refresh::before{
+    .arrow:before,
+    .fa-refresh:before,
+    .fa-heart:before{
       font-size: 1.5rem;
       margin: auto;
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .wrapper {
@@ -397,7 +418,7 @@
         position: absolute;
         top: 0;
         left: -100%;
-        background-color: #dccdcb;
+        background-color: rgba(255, 255, 255, 0.2);
     }
 
     .text {
