@@ -6,6 +6,8 @@
 		<title>LESSWord</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/task.css"/>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -18,7 +20,7 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span class="icon fa-rocket"></span>
+							<span class="icon fa-grav"></span>
 						</div>
 						<div class="content">
 							<div class="inner">
@@ -140,7 +142,7 @@
 										<input type="password" name="logPassword" id="LogPassword" />
 									</div>
 									<ul class="actions">
-										<li><input type="register" value="Submit" class="special board" id="LogSubmit"/></li>
+										<li><input type="register" value="Log" class="special board" id="LogSubmit"/></li>
 									</ul>
 								</form>
 								<hr>
@@ -167,21 +169,64 @@
 												<label for="choosebook">Choose Word Set</label>
 												<div class="field">
 													<input type="checkbox" id="dic-cet4" name="dic-cet4">
-													<label for="dic-cet4">CET4</label>
+													<label for="dic-cet4">CET4 (3596 words)</label>
 													<input type="checkbox" id="dic-cet6" name="dic-cet6">
-													<label for="dic-cet6">CET6</label>
+													<label for="dic-cet6">CET6 (core, 1000words)</label>
+													<input type="checkbox" id="dic-toefl" name="dic-cet6">
+													<label for="dic-toefl">TOEFL (4680 words)</label>
 												</div>
+											</div>
+											<div class="field">
+												<label for="chooseday">Learning Periods</label>
+												<div id="day-slider"></div>
+												<p type="alert" name="DayAlert">30 days. About 0 words per day.</p>
 											</div>
 										</div>
 										<div class="half">
 											<div class="flex center">
-												<div class="portrait" style="margin-top:5rem">
+												<div class="portrait" style="margin-top:3rem">
 													<span class="icon fa-user"></span>
 												</div>
 											</div>
 											<div class="field" style="margin-top:2rem">
-												<label for="photo" class="center">Photo</label>
+												<label for="photo" class="center">Choose Your Portrait</label>
 											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-1">
+														<span class="icon fa-ship"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-2">
+														<span class="icon fa-motorcycle"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-3">
+														<span class="icon fa-rocket"></span>
+													</div>
+											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-4">
+														<span class="icon fa-github-alt"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-5">
+														<span class="icon fa-reddit-alien"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-6">
+														<span class="icon fa-pagelines"></span>
+													</div>
+											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-7">
+														<span class="icon fa-connectdevelop"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-8">
+														<span class="icon fa-odnoklassniki"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-9">
+														<span class="icon fa-ge"></span>
+													</div>
+											</div>
+											
+											
+											
 										</div>
 									</div>
 									<ul class="actions flex">
@@ -447,6 +492,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
+			<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/swiper.min.js"></script>
 			<script src="assets/js/util.js"></script>

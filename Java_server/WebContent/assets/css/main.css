@@ -315,6 +315,38 @@
 		font-size: 3rem;
 	}
 
+	div .portrait-choose {
+		width: 3rem;
+		height: 3rem;
+		line-height: 3rem;
+		border: solid 1px #888888;
+		border-radius: 20%;
+		text-align: center;
+	} 
+
+	div #portrait-choose-1 .icon:before,
+	div #portrait-choose-2 .icon:before,
+	div #portrait-choose-3 .icon:before,
+	div #portrait-choose-4 .icon:before,
+	div #portrait-choose-5 .icon:before,
+	div #portrait-choose-6 .icon:before,
+	div #portrait-choose-7 .icon:before,
+	div #portrait-choose-8 .icon:before,
+	div #portrait-choose-9 .icon:before
+	{
+		font-size: 1.5rem;
+		color: #888888;
+	}
+
+	.choosen-portrait-box {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		padding-left: 2rem;
+		padding-right: 2rem;
+		padding-top: 1rem;
+	}
+
 
 
 /* Form */
@@ -614,9 +646,53 @@
 			border-radius: 0;
 			padding: 0;
 		}
-
+		
+/* slider */		
+		#day-slider {
+			margin-top: 1px;
+		}
+		
+		.ui-widget-content {
+			background: rgba(255, 255, 255, 0);
+			border: 0px solid #fff;
+		}
+		
+		#day-slider .ui-widget-header {
+			background: rgba(255, 255, 255, 0.3);
+			border: 0px solid #fff;
+		}
+		
+		.ui-state-default, .ui-widget-content .ui-state-default {
+			background: rgba(255, 255, 255, 1);
+			border: 0px;
+		}
+		
+		.ui-slider .ui-slider-handle {
+			width: 1.2em;
+			heigth: 1.2em;
+		}
+		
+		.ui-slider-horizontal .ui-slider-handle {
+			top: -0.2em;
+		}
+		
+		.ui-corner-all {
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border-top-left-radius: 10px;
+			
+		}
+		
+		p[name="DayAlert"] {
+			color: rgb(196, 90, 84);
+			font-weight: 800;
+			margin-top: 0.3rem;
+		}
+		
+		
+		
 /* Icon */
-
 	.icon {
 		text-decoration: none;
 		border-bottom: none;
@@ -1289,7 +1365,6 @@
 			}
 
 		#header .logo {
-			width: 5.5rem;
 			height: 5.5rem;
 			line-height: 5.5rem;
 			border: solid 1px #ffffff;
@@ -1297,7 +1372,7 @@
 		}
 
 			#header .logo .icon:before {
-				font-size: 2rem;
+				font-size: 5.5rem;
 			}
 
 		#header .content {

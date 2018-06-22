@@ -12,7 +12,7 @@ public class SQL {
     static final String USER = "root";
     static final String PASS = "maxinyin";
     
-    static final String SqlInsertOperation[] = {"insert into User (name, email, password) values (?, ?, ?)",  //operation 0
+    static final String SqlInsertOperation[] = {"insert into User (name, email, password, portrait) values (?, ?, ?, ?)",  //operation 0
     									""};
     static final String SqlSelectOperation[] = {"select * from User where name = ?",   //operation 0
     											   "select * from User where email = ?",  //operation 1   

@@ -75,11 +75,19 @@ public class SignForm extends HttpServlet {
         String name =new String(request.getParameter("name"));
         String password = new String(request.getParameter("password"));
         String email = new String(request.getParameter("email"));
+        String portrait = new String(request.getParameter("portrait"));
+        
+        String cet4 = new String(request.getParameter("cet4"));
+        String cet6 = new String(request.getParameter("cet6"));
+        String toefl = new String(request.getParameter("toefl"));
+        String day = new String(request.getParameter("day"));
+        
         System.out.println("new user: \nname: "+ name + "\nemail:" + email + "\npassword: "+ password);
+        System.out.println("recite: cet4:" + cet4 + " cet6:" + cet6 + " toefl:" + toefl + " day:" + day);
         
         response.setContentType("text/html;charset=UTF-8");
         try {
-        	   SQL.insert(0, new String[]{name, email, password});
+        	   SQL.insert(0, new String[]{name, email, password, portrait});
         } catch (SQLException e1){
         		response.setStatus(403);
         		e1.printStackTrace();
