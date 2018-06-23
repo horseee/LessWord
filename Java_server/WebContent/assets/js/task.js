@@ -80,7 +80,6 @@ $(document).ready(function () {
             {
                 name: username,
                 wordnumber: today_task,
-                wordset: 1,
                 type: $(this).attr('id')
             },
             function(data,status,request){

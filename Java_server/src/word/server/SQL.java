@@ -33,6 +33,7 @@ public class SQL {
     											   "select * from ", // operation 6
     											   "_word where label = 2 order by rand() limit ?",//operation 7
     											   "_word where label = 1 and TO_DAYS(NOW()) - TO_DAYS(recite_time) > 2", //operation 8
+    											   "_word where label = 3",//operation 9
     									""};
     static final String SqlCreateOperation[] = {"create table ","_word( label int, wordbook int, wordid int, recite_time date, primary key(wordbook, wordid))"};
     static final String SqlUpdateOperation[] = {"update ","_word set label = ?, recite_time = ? where wordbook = ? and wordid = ?"};
@@ -263,6 +264,58 @@ public class SQL {
 	        		psql = conn.prepareStatement(SqlSelectOperation[6] + username + SqlSelectOperation[8]);
 	        
 	        rs = psql.executeQuery(); 
+	        
+	        PreparedStatement psql_select = null;
+	        int ptr = 0;
+	        while (rs.next()) {
+	        		int wordset = rs.getInt("wordbook");
+	        		int wordid = rs.getInt("wordid");
+	        		 if (wordset == 0) { //cet4
+	 	        		psql_select = conn.prepareStatement(SqlSelectOperation[2]);
+	 	        		psql_select.setInt(1, wordid);
+	 	         } else if (wordset == 1) {  //cet6
+	 	        		psql_select = conn.prepareStatement(SqlSelectOperation[3]);
+	 	        		psql_select.setInt(1, wordid);
+	 	         } else {  //toefl
+	 	        		psql_select = conn.prepareStatement(SqlSelectOperation[4]);
+	 	        		psql_select.setInt(1, wordid);
+	 	         }
+	        		 ResultSet word_res = psql_select.executeQuery();
+	        		 while (word_res.next()) {
+	        			 word_package[3 * ptr] = word_res.getString("word");
+	        			 word_package[3 * ptr + 1] = String.valueOf(wordset);
+	        			 word_package[3 * ptr + 2] = String.valueOf(wordid);
+	        		 }
+	        		 ptr ++;
+	        }
+        		psql.close();
+    	        conn.close();
+    	        psql_select.close();
+    	        
+    	        return word_package;
+	    } finally{
+	        if(conn!=null) conn.close();
+	    }
+	}
+	
+	public static String[] get_important_word_for_user(String username) throws SQLException, ClassNotFoundException{
+		Connection conn = null;
+	    	ResultSet rs = null;
+	    	int count = 0;
+	    try {
+	        Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	        
+	        PreparedStatement psql = null;
+	       
+	        	psql = conn.prepareStatement(SqlSelectOperation[6] + username + SqlSelectOperation[9]);
+	        rs = psql.executeQuery(); 
+	        
+	        rs.last();
+	        int word_number = rs.getRow();
+	        rs.beforeFirst();
+	        String[] word_package = new String[word_number * 3];
+	        System.out.println("word number : " + word_number);
 	        
 	        PreparedStatement psql_select = null;
 	        int ptr = 0;

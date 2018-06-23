@@ -145,6 +145,7 @@ $(document).ready(function(){
                     if (recite_cet4 == 1) today_recite = today_recite + 3596;
                     if (recite_cet6 == 1) today_recite = today_recite + 1000;
                     today_recite = today_recite / day_choose;
+                    
                     word_total = 0;
                     day_choose = 30;
                     recite_toefl = -1;
@@ -166,8 +167,12 @@ $(document).ready(function(){
                     $('.cut-line').show();
                     $('.login-first').hide();
                     
-                    
+                    $('.recite-goal-today > h3').text("YOU NEED TO RECITE "+ today_recite +" WORDS TODAY");
                     today_review = 0;
+                    $('.review-goal-today > h3').text("You need to review "+ today_review+" words today");
+                    	$('#start-review').addClass('disabled');
+                    
+                    
             })
         }
     });
