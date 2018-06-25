@@ -1,3 +1,44 @@
+.insert-box {
+	display: flex;
+	flex-direction: row;
+}
+
+.add-word {
+	border: 1px solid rgba(0, 0, 0, 0.6);
+	padding: 2rem;
+	margin-bottom: 3rem;
+	border-radius: 0.4rem;
+	-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+#add-word-submit {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.one-line-add{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1.2rem;
+  justify-content: space-between;
+}
+
+.one-third {
+  width: 30%;
+}
+
+.two-third {
+  width: 60%;
+}
+
+.fa-plus-square-o:before,
+.fa-minus-square-o:before{
+	font-size: 1.5rem;
+}
+
 .right-angle {
     width: 1.5rem;
     height: 1.5rem;
@@ -62,6 +103,7 @@
 
 .fa-angle-down::before{
     color: rgba(255, 255, 255, 1);
+    font-size: 1.5rem;
 }
 
 .fa-tags::before,
@@ -74,7 +116,7 @@
 	margin-left: 96%;
 }
 .fa-check-circle::before{
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	color: rgba(255, 255, 255, 0.6);
 }
 
@@ -103,6 +145,7 @@
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
   width: 100%;
+  border-radius: 0.4rem;
 }
 
 .rolldown-list li:nth-child(2n+1) {
@@ -110,6 +153,7 @@
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
   width: 110%;
+  border-radius: 0.4rem;
 }
 
 #myList {
@@ -131,3 +175,4 @@
     transform: rotateX(0deg);
   }
 }
+

@@ -11,14 +11,16 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/task.css"/>
 		<link rel="stylesheet" href="assets/css/wordbook.css"/>
+		<link rel="stylesheet" href="assets/css/user.css"/>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body>
-
+		<div ><a class="log-href" href="#log">&nbsp;&nbsp;<text>log in</text>&nbsp;&nbsp;</a></div>
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Header -->
+
 					<header id="header">
 						<div class="logo">
 							<span class="icon fa-grav"></span>
@@ -134,7 +136,49 @@
 
 						<!-- WordBook -->
 							<article id="WordBook">
-								<h2 >WordBook</h2>
+								<div class="insert-box">
+									<h2 class="major" style="margin-bottom: 3rem">WordBook</h2>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<div class="icon fa-plus-square-o"></div>
+									<div class="icon fa-minus-square-o"></div>
+								</div>
+								<div class="add-word">
+									<h2 class="major" style="font-size: 1.2rem;letter-spacing: 0.2rem;"> add your word</h2>
+									<div class="field half">
+										<label for="add-word-name">word</label>
+										<input type="text" id="add-word-name" value=""  />
+									</div>
+									<div class = "one-line-add">
+										<div class="field one-third">
+											<label for="add-word-pron">pronuncation</label>
+											<input type="text" id="add-word-pron" value=""  />
+										</div>
+										<div class="field two-third">
+											<label for="add-word-pron-link">pronuncation link</label>
+											<input type="text" id="add-word-pron-link" value=""  />
+										</div>
+									</div>
+									<div class = "one-line-add">
+										<div class="field one-third">
+											<label for="add-word-pron">form(adj./n.)</label>
+											<input type="text" id="add-word-pron" value=""  />
+										</div>
+										<div class="field two-third">
+											<label for="add-word-pron-link">meaning</label>
+											<input type="text" id="add-word-pron-link" value=""  />
+										</div>
+									</div>
+									<div class="field" style="margin-top: 1.2rem">
+										<label for="add-word-example-english">Example Sentence (Eng)</label>
+										<input type="text" id="add-word-example-english" value=""  />
+									</div>
+									<div class="field" style="margin-top: 1.2rem">
+										<label for="add-word-example-chn">Example Sentence (Chinese)</label>
+										<input type="text" id="add-word-example-chn" value=""  />
+									</div>
+									<button type="add-word-submit" value="add-word-submit" class="special board" id="add-word-submit">Submit</button>
+								</div>
+
 								<ul class="rolldown-list" id="myList">
 								  	
 								</ul> 
@@ -142,23 +186,28 @@
 
 						<!-- Log/Sign -->
 							<article id="log">
-								<h2 class="major">Sign In</h2>
-								<form name='logform'>
-									<div class="field first">
-										<label for="username">Name/Email</label>
-										<input type="text" name="username" id="LogName" placeholder="Meimei Han" />
-									</div>
-									<div class="field">
-										<label for="password">Password</label>
-										<input type="password" name="logPassword" id="LogPassword" />
-									</div>
-									<ul class="actions">
-										<li><button type="register" value="Log" class="special board" id="LogSubmit">Log</button></li>
-									</ul>
-								</form>
-								<hr>
-								<h2 class="major">Sign Up</h2>
-								<form name='logform'>
+								<div class="log_out">
+									<h2 class="major">Sign Out</h2>
+									<button type="SignOut" value="LogOut" class="special board" id="OutSubmit" style = "margin-bottom: 10rem;">Log Out</button>
+								</div>
+								<div class="log_in_and_up">
+									<h2 class="major">Sign In</h2>
+									<form name='logform'>
+										<div class="field first">
+											<label for="username">Name/Email</label>
+											<input type="text" name="username" id="LogName" placeholder="Meimei Han" />
+										</div>
+										<div class="field">
+											<label for="password">Password</label>
+											<input type="password" name="logPassword" id="LogPassword" />
+										</div>
+										<ul class="actions">
+											<li><button type="register" value="Log" class="special board" id="LogSubmit">Log</button></li>
+										</ul>
+									</form>
+									<hr>
+									<h2 class="major">Sign Up</h2>
+									<form name='logform'>
 									<div class="flex">
 										<div class="half">
 											<div class="field first" id="DivName">
@@ -245,7 +294,44 @@
 										<li><button type="reset" value="Reset" class="board">Reset</button></li>
 									</ul>
 								</form>
+								</div>
 							</article>
+							
+						<!-- user -->
+							<article id = "user">
+							
+								<h2 class="major">Statistic</h2>
+								<div class="data-total-box">
+									<div class="finish-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Finish:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="review-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Review:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="remain-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Remain:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="important-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Important:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+	
+								</div>
+								<div class="log-first-static">
+									<h3 style="margin-top: 3rem"> I don't know who you are. Please <strong> log in </strong> first</h3>
+									<button class="to-log-static"> Click me to Log in</button>
+								</div>
+								
+								<canvas id="myChart" width="800" height="400" style="margin-top: 5rem"></canvas>
+							
+							</article>	
 
 						<!-- Elements -->
 							<article id="elements">
@@ -504,6 +590,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/swiper.min.js"></script>
 			<script src="assets/js/util.js"></script>
@@ -512,6 +599,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/task.js"></script>
 			<script src="assets/js/GetWord.js"></script>
 			<script src="assets/js/wordbook.js"></script>
+			<script src="assets/js/user.js"></script>
+			
 
 
 	</body>

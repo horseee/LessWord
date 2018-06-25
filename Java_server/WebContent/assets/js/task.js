@@ -10,11 +10,18 @@ $(document).ready(function () {
     $('.arrow').hide();
     $('.word-container').hide();
     
+    $('#header > nav > ul > li:nth-child(1) > a').click(function(e){
+    		$('.log-href').hide();
+    })
+    
+    
     $('.to-log').click(function(){
     		$('#task').removeClass("active");
     		$('#task').hide();
         $('#log').addClass("active");
         $('#log').show();
+        $('.log-href').show();
+        //location.hash = '#log';
     })
     
     $('.fa-heart').click(function() {
@@ -286,17 +293,6 @@ $(document).ready(function () {
         			$('#thumb-' + wordptr).find('.back').css('background-color', 'rgb()');
         			originPtrColor = 'rgba(255, 255, 255, 0.075)';
             		$('#thumb-' + wordptr).find('.back').css('display', 'rgb(220, 205, 203)');
-            		$.get("http://localhost:8080/Java_server/ChangeWord", 
-            	            {
-            	                name: username,
-            	                wordset: wordlist[wordptr-1].wordset,
-            	                wordid: wordlist[wordptr-1].wordid,
-            	                status: task_now_dst + 1
-            	            },
-            	            function(data,status,request){
-            	            		console.log(data)
-            	            }
-            	    )
             	    myWordFinish[wordptr] = 0
         		}
         	});

@@ -9,6 +9,7 @@ $(document).ready(function(){
 	
     $("p[type='alert']").hide();
     $("p[name='DayAlert']").show();
+    $(".log_out").hide();
     
     $(".portrait-choose").mouseenter(function(){
     		var portrait_id = $(this).attr('id')
@@ -119,6 +120,23 @@ $(document).ready(function(){
                 else {
                 		alert("data.result.info");
                 }
+                
+                $('.log-href > text').text('log out');
+                $('#header > nav > ul > li:nth-child(3) > a > strong').text(username);
+                $('#header > nav > ul > li:nth-child(3) > a').removeAttr('href');
+                
+                $.get("http://localhost:8080/Java_server/UserStatic", 
+            			{
+                            name: username,
+                        },
+                        function(data,status,request){
+                        		console.log(data);
+                        		recite_data = data.result.recite;
+                        		review_data = data.result.review;
+                        		recite_timelabel = data.result.timelabel;
+                        		label_word_static = data.result.word_total;
+                       }
+                )
             })
     });
 
@@ -144,7 +162,7 @@ $(document).ready(function(){
                     if (recite_toefl == 1) today_recite = today_recite + 4680;
                     if (recite_cet4 == 1) today_recite = today_recite + 3596;
                     if (recite_cet6 == 1) today_recite = today_recite + 1000;
-                    today_recite = today_recite / day_choose;
+                    today_recite = parseInt(today_recite / day_choose);
                     
                     word_total = 0;
                     day_choose = 30;
@@ -170,9 +188,24 @@ $(document).ready(function(){
                     $('.recite-goal-today > h3').text("YOU NEED TO RECITE "+ today_recite +" WORDS TODAY");
                     today_review = 0;
                     $('.review-goal-today > h3').text("You need to review "+ today_review+" words today");
-                    	$('#start-review').addClass('disabled');
+                    $('#start-review').addClass('disabled');
                     
+                    $('.log-href > text').text('log out');
+                    $('#header > nav > ul > li:nth-child(3) > a > strong').text(username);
+                    $('#header > nav > ul > li:nth-child(3) > a').removeAttr('href');
                     
+                    $.get("http://localhost:8080/Java_server/UserStatic", 
+                			{
+                                name: username,
+                            },
+                            function(data,status,request){
+                            		console.log(data);
+                            		recite_data = data.result.recite;
+                            		review_data = data.result.review;
+                            		recite_timelabel = data.result.timelabel;
+                            		label_word_static = data.result.word_total;
+                           }
+                    )
             })
         }
     });

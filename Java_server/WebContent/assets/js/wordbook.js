@@ -1,66 +1,133 @@
 // Increments the delay on each item.
+var wordlist;
+
+$('.add-word').hide();
+
+$('.fa-plus-square-o').click(function(){
+	$('.add-word').show();
+	$('.fa-minus-square-o').show();
+	$('#myList').hide();
+	$(this).hide();
+	var delay = '0.1s';
+	$('.add-word').css({
+	    webkitAnimationDelay: delay,
+	    mozAnimationDelay: delay,
+	    animationDelay: delay
+	});
+})
+
+$('.fa-minus-square-o').click(function(){
+	$('.add-word').hide();
+	$('.fa-plus-square-o').show();
+	$('#myList').show();
+	$(this).hide();
+})
+
 
 $('#header > nav > ul > li:nth-child(2) > a').click(function(e){
 	$('#myList').empty();
-	$.get("http://localhost:8080/Java_server/ImportantWord", 
-            {
-                name: username,
-            },
-            function(data,status,request){
-            		console.log(data);
-            		var listlen = data.wordlist.length;
-            		var click_word = new Array();
-            		
-            		for (var i=0; i<listlen; i++) {
-            			$('#myList').append(list_dom_1 + i + list_dom_2);
-            			$('#important_word_' + i + ' > div.word-box > strong').text(data.wordlist[i].word);
-            			$('#important_word_' + i + ' > div.word-box > div').attr('id', 'right-angle-' + i);
-            			$('#important_word_' + i).find('.phonetic').text('[' + data.wordlist[i].pron+ ']');
-            			$('#important_word_' + i).find('audio').attr('src', data.wordlist[i].pronlink);
-            			$('#important_word_' + i).find('audio').attr('id', 'audio-'+i);
-            			for (var j=0; j<data.wordlist[i].definition.length; j++){
-            				if (data.wordlist[i].definition[j].form == "") break;
-            				$('#important_word_' + i).find('#fold-mean').append(mean_box_1 + data.wordlist[i].definition[j].form +mean_box_2 +  data.wordlist[i].definition[j].meaning  + mean_box_3);			
-            			}
-            			$('#important_word_' + i).find('.sentence-box-english').text(data.wordlist[i].sample_english);
-            			$('#important_word_' + i).find('.sentence-box-chinese').text(data.wordlist[i].sample_chinese);   
-            			$('#important_word_' + i).find('.fa-check-circle').attr('id', 'click-word-'+i);
-            			click_word[i] = 0;
-            		}
-            		
-            		
-            		$('.right-angle').click(function(event){
-					event.preventDefault();
-					folder_ID = parseInt($(this).attr('id').split('-')[2]);
-					$('#important_word_' + folder_ID + ' > div.folder-word').toggleClass('show');
-				})
-				
-				$('.rolldown-list li').each(function () {
-					  var delay = (parseInt($(this).attr('id').split('_')[2]) / 4) + 's';
-					  $(this).css({
-					    webkitAnimationDelay: delay,
-					    mozAnimationDelay: delay,
-					    animationDelay: delay
-					  });
-				});
-            		
-            		$('.fa-check-circle').click(function(){
-            			  var word_id = parseInt($(this).attr('id').split('-')[2]);
-            			  console.log(word_id);
-            			  if ( click_word[word_id] == 0) {
-            				  $(this).append("<style>.fa-check-circle:before{color: rgba(240, 255, 240, 1)}</style>")
-            			  } else {
-            				  $(this).append("<style>.fa-check-circle:before{color: rgba(255, 255, 255, 1)}</style>")
-            			  }
-            			  click_word[word_id] = 1 - click_word[word_id];
-            		})
-            		
-            		$('.fa-play-circle').click(function(){
-            			var audio_id = $(this).find('audio').attr('id')
-            	        document.getElementById(audio_id).play();
-            	    })
-            }
-    )
+	$('.log-href').hide();
+	if (username == "") {
+		$('#myList').append("<h3 style=\"margin-top: 3rem\"> I don't know who you are. Please <strong> log in </strong> first</h3>" +
+				'<button class="to-log"> Click me to Log in</button>');
+		$('.fa-plus-square-o').hide();
+		$('.fa-minus-square-o').hide();
+		
+	    $('.to-log').click(function(){
+	    		$('#WordBook').removeClass("active");
+	    		$('#WordBook').hide();
+	        $('#log').addClass("active");
+	        $('#log').show();
+	        $('.log-href').show();
+	        //location.hash = '#log';
+	    })
+	} else {
+		$('.fa-plus-square-o').show();
+		$('.fa-minus-square-o').hide();
+		$.get("http://localhost:8080/Java_server/ImportantWord", 
+	            {
+	                name: username,
+	            },
+	            function(data,status,request){
+	            		console.log(data);
+	            		var listlen = data.wordlist.length;
+	            		var click_word = new Array();
+	            		wordlist = data.wordlist;
+	            		
+	            		for (var i=0; i<listlen; i++) {
+	            			$('#myList').append(list_dom_1 + i + list_dom_2);
+	            			$('#important_word_' + i + ' > div.word-box > strong').text(data.wordlist[i].word);
+	            			$('#important_word_' + i + ' > div.word-box > div').attr('id', 'right-angle-' + i);
+	            			$('#important_word_' + i).find('.phonetic').text('[' + data.wordlist[i].pron+ ']');
+	            			$('#important_word_' + i).find('audio').attr('src', data.wordlist[i].pronlink);
+	            			$('#important_word_' + i).find('audio').attr('id', 'audio-'+i);
+	            			for (var j=0; j<data.wordlist[i].definition.length; j++){
+	            				if (data.wordlist[i].definition[j].form == "") break;
+	            				$('#important_word_' + i).find('#fold-mean').append(mean_box_1 + data.wordlist[i].definition[j].form +mean_box_2 +  data.wordlist[i].definition[j].meaning  + mean_box_3);			
+	            			}
+	            			$('#important_word_' + i).find('.sentence-box-english').text(data.wordlist[i].sample_english);
+	            			$('#important_word_' + i).find('.sentence-box-chinese').text(data.wordlist[i].sample_chinese);   
+	            			$('#important_word_' + i).find('.fa-check-circle').attr('id', 'click-word-'+i);
+	            			click_word[i] = 0;
+	            		}
+	            		
+	            		
+	            		$('.right-angle').click(function(event){
+						event.preventDefault();
+						folder_ID = parseInt($(this).attr('id').split('-')[2]);
+						$('#important_word_' + folder_ID + ' > div.folder-word').toggleClass('show');
+					})
+					
+					$('.rolldown-list li').each(function () {
+						  var delay = (parseInt($(this).attr('id').split('_')[2]) / 4) + 's';
+						  $(this).css({
+						    webkitAnimationDelay: delay,
+						    mozAnimationDelay: delay,
+						    animationDelay: delay
+						  });
+					});
+	            		
+	            		$('.fa-check-circle').click(function(){
+	            			  var word_id = parseInt($(this).attr('id').split('-')[2]);
+	            			  console.log(word_id);
+	            			  if ( click_word[word_id] == 0) {
+	            				  $(this).append("<style>#click-word-" + word_id +"::before{color: rgba(240, 255, 240, 1)}</style>")
+	            				  $.get("http://localhost:8080/Java_server/ChangeWord", 
+			            	            {
+			            	                name: username,
+			            	                wordset: wordlist[word_id].wordset,
+			            	                wordid: wordlist[word_id].wordid,
+			            	                status: 2
+			            	            },
+			            	            function(data,status,request){
+			            	            		console.log(data)
+			            	            }
+			            	   	  )
+	            			  } else {
+	            				  $(this).append("<style>#click-word-"+ word_id +"::before{color: rgba(255, 255, 255, 0.6)}</style>")
+	            				  $.get("http://localhost:8080/Java_server/ChangeWord", 
+			            	            {
+			            	                name: username,
+			            	                wordset: wordlist[word_id].wordset,
+			            	                wordid: wordlist[word_id].wordid,
+			            	                status: 3
+			            	            },
+			            	            function(data,status,request){
+			            	            		console.log(data)
+			            	            }
+			            	   	  )
+	            			  }
+	            			  click_word[word_id] = 1 - click_word[word_id];
+	            		})
+	            		
+	            		$('.fa-play-circle').click(function(){
+	            			var audio_id = $(this).find('audio').attr('id')
+	            	        document.getElementById(audio_id).play();
+	            	    })
+	            }
+	    )
+	}
+	
 })
 
 var  mean_box_1= '<div class="fold-mean-box">\

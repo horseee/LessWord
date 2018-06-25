@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -34,9 +36,16 @@ public class SQL {
     											   "_word where label = 2 order by rand() limit ?",//operation 7
     											   "_word where label = 1 and TO_DAYS(NOW()) - TO_DAYS(recite_time) > 2", //operation 8
     											   "_word where label = 3",//operation 9
+    											   "select count(*) from ", //operation 10
+    											   "_word group by label",//operation 11
+    											   "_word where label = 0 and TO_DAYS(NOW()) - TO_DAYS(review_time) = ?",  //operation 12
+    											   "_word where label = 1 and TO_DAYS(NOW()) - TO_DAYS(recite_time) = ?",  //operation 13
+    											   
     									""};
     static final String SqlCreateOperation[] = {"create table ","_word( label int, wordbook int, wordid int, recite_time date, primary key(wordbook, wordid))"};
-    static final String SqlUpdateOperation[] = {"update ","_word set label = ?, recite_time = ? where wordbook = ? and wordid = ?"};
+    static final String SqlUpdateOperation[] = {"update ","_word set label = ?, recite_time = ? where wordbook = ? and wordid = ?", //operation 1
+    												"_word set label = ?, review_time = ? where wordbook = ? and wordid = ?", //operation 2
+    												""};
     
     public static void insert(int operator, String[] data ) throws SQLException, ClassNotFoundException {
     		Connection conn = null;
@@ -54,6 +63,68 @@ public class SQL {
             conn.close();
         } finally{
             if(conn!=null) conn.close();
+        }
+    }
+    
+    public static int[] select_user_static(String name) throws SQLException, ClassNotFoundException {
+    		int[] user_info = {0, 0, 0, 0};
+    		Connection conn = null;
+        try{
+        		Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+    		    PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[10] + name +SqlSelectOperation[11]);
+    		    ResultSet rs = psql.executeQuery(); 
+    		    
+    		    int ptr = 0;
+    		    while (rs.next()) {
+    		    		user_info[ptr] = rs.getInt("count(*)");
+    		    		ptr ++;
+    		    }
+    		    psql.close();
+    	        conn.close();
+    	        return user_info;
+    	    } finally{
+    	        if(conn!=null) conn.close();
+    	    }
+    }
+    
+    public static List<int[]> select_user_days(String name) throws SQLException, ClassNotFoundException {
+    		List<int[]> list_res = new ArrayList<int[]>(); 
+    		Connection conn = null;
+        try{
+            	Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            
+        		PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[10] + name +SqlSelectOperation[12]);
+        		int[] review_res = {0, 0, 0, 0, 0, 0, 0};
+        		for (int i=6; i>=0; i--) {
+        			psql.setInt(1, i);
+        			ResultSet rs = psql.executeQuery(); 
+        			
+        			while (rs.next()) {
+	    		    		review_res[6-i] = rs.getInt("count(*)");
+	    		    }
+        		}
+        		
+        		psql = conn.prepareStatement(SqlSelectOperation[10] + name +SqlSelectOperation[13]);
+        		int[] recite_res = {0, 0, 0, 0, 0, 0, 0};
+        		for (int i=6; i>=0; i--) {
+        			psql.setInt(1, i);
+        			ResultSet rs = psql.executeQuery(); 
+        			
+        			while (rs.next()) {
+	    		    		recite_res[6-i] = rs.getInt("count(*)");
+	    		    }
+        		}
+        		    
+        		list_res.add(review_res);
+        		list_res.add(recite_res);
+        		    
+        		psql.close();
+        	    conn.close();
+        	    return list_res;
+        } finally{
+        	        if(conn!=null) conn.close();
         }
     }
     
@@ -89,11 +160,21 @@ public class SQL {
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	        String strdate = sdf.format(new Date());
 	        
-	        PreparedStatement psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[1]);
+	        PreparedStatement psql;
+	        if (status == 1) {
+	        		psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[1]);
+	        } else if (status == 0){
+	        		psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[2]);
+	        } else {
+	        		psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[1]);
+	        		strdate = "2050-01-01";
+	        }
+	         
 	        psql.setInt(1, status);
 	        psql.setInt(3, wordset);
 	        psql.setInt(4, wordid);
 	        psql.setString(2, strdate);
+	        System.out.println(psql);
 	        psql.executeUpdate();
 	        
 	        conn.close();
