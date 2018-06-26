@@ -28,10 +28,11 @@ public class WordStatus extends HttpServlet {
         String wordset = new String(request.getParameter("wordset"));
         String wordid = new String(request.getParameter("wordid"));
         String status = new String(request.getParameter("status"));
+        String word = new String(request.getParameter("word"));
         String success = "false";
         
 		try {
-			SQL.change_word_status(name, Integer.parseInt(wordset), Integer.parseInt(wordid), Integer.parseInt(status));
+			SQL.change_word_status(name, Integer.parseInt(wordset), Integer.parseInt(wordid), Integer.parseInt(status), word);
 			success = "true";
 		} catch (Exception e) {
 			e.printStackTrace();

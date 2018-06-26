@@ -79,6 +79,24 @@ var label_word_static;
 				    $('.review-goal-today').hide();
 				    $('.cut-line').hide();
 				    $('.login-first').show();
+				    $('#start-recite').removeClass("disabled");
+				    $('#start-review').removeClass("disabled");
+				    
+				    var origin_class = $("#header > div.logo > span").prop("className").split(' ')[1];
+				    $("#header > div.logo > span").removeClass(origin_class);
+                    $("#header > div.logo > span").addClass("fa-grav");
+                    $("#header > div.logo").removeAttr('width');
+                    $("#header").append("<style>#header .logo .icon:before{font-size: 5.5rem}</style>");
+                    
+                    $('#task > div.slide-container > div.card.flipped').removeClass('flipped');;
+                    $('#task > div.slide-container > div.card > div.back').hide();
+                    $('#task > div.slide-container > div.card > div.front').hide();
+                    
+                    
+                    $('.refresh').hide();
+                    $('.arrow').hide();
+                    $('.word-container').hide();
+			
 				    
 				}
 			})

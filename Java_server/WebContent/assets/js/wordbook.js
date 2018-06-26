@@ -20,9 +20,141 @@ $('.fa-minus-square-o').click(function(){
 	$('.add-word').hide();
 	$('.fa-plus-square-o').show();
 	$('#myList').show();
+	$('#myList').empty();
+	$.get("http://localhost:8080/Java_server/ImportantWord", 
+            {
+                name: username,
+            },
+            function(data,status,request){
+            		console.log(data);
+            		listlen = data.wordlist.length;
+            		var click_word = new Array();
+            		wordlist = data.wordlist;
+            		
+            		for (var i=0; i<listlen; i++) {
+            			$('#myList').append(list_dom_1 + i + list_dom_2);
+            			$('#important_word_' + i + ' > div.word-box > strong').text(data.wordlist[i].word);
+            			$('#important_word_' + i + ' > div.word-box > div').attr('id', 'right-angle-' + i);
+            			$('#important_word_' + i).find('.phonetic').text('[' + data.wordlist[i].pron+ ']');
+            			$('#important_word_' + i).find('audio').attr('src', data.wordlist[i].pronlink);
+            			$('#important_word_' + i).find('audio').attr('id', 'audio-'+i);
+            			for (var j=0; j<data.wordlist[i].definition.length; j++){
+            				if (data.wordlist[i].definition[j].form == "") break;
+            				$('#important_word_' + i).find('#fold-mean').append(mean_box_1 + data.wordlist[i].definition[j].form +mean_box_2 +  data.wordlist[i].definition[j].meaning  + mean_box_3);			
+            			}
+            			$('#important_word_' + i).find('.sentence-box-english').text(data.wordlist[i].sample_english);
+            			$('#important_word_' + i).find('.sentence-box-chinese').text(data.wordlist[i].sample_chinese);   
+            			$('#important_word_' + i).find('.fa-check-circle').attr('id', 'click-word-'+i);
+            			click_word[i] = 0;
+            		}
+            		
+            		
+            		$('.right-angle').click(function(event){
+					event.preventDefault();
+					folder_ID = parseInt($(this).attr('id').split('-')[2]);
+					$('#important_word_' + folder_ID + ' > div.folder-word').toggleClass('show');
+				})
+				
+				$('.rolldown-list li').each(function () {
+					  var delay = (parseInt($(this).attr('id').split('_')[2]) / 4) + 's';
+					  $(this).css({
+					    webkitAnimationDelay: delay,
+					    mozAnimationDelay: delay,
+					    animationDelay: delay
+					  });
+				});
+            		
+            		$('.fa-check-circle').click(function(){
+            			  var word_id = parseInt($(this).attr('id').split('-')[2]);
+            			  console.log(word_id);
+            			  if ( click_word[word_id] == 0) {
+            				  $(this).append("<style>#click-word-" + word_id +"::before{color: rgba(240, 255, 240, 1)}</style>")
+            				  $.get("http://localhost:8080/Java_server/ChangeWord", 
+		            	            {
+		            	                name: username,
+		            	                wordset: wordlist[word_id].wordset,
+		            	                wordid: wordlist[word_id].wordid,
+		            	                status: 2
+		            	            },
+		            	            function(data,status,request){
+		            	            		console.log(data)
+		            	            }
+		            	   	  )
+            			  } else {
+            				  $(this).append("<style>#click-word-"+ word_id +"::before{color: rgba(255, 255, 255, 0.6)}</style>")
+            				  $.get("http://localhost:8080/Java_server/ChangeWord", 
+		            	            {
+		            	                name: username,
+		            	                wordset: wordlist[word_id].wordset,
+		            	                wordid: wordlist[word_id].wordid,
+		            	                status: 3
+		            	            },
+		            	            function(data,status,request){
+		            	            		console.log(data)
+		            	            }
+		            	   	  )
+            			  }
+            			  click_word[word_id] = 1 - click_word[word_id];
+            		})
+            		
+            		$('.fa-play-circle').click(function(){
+            			var audio_id = $(this).find('audio').attr('id')
+            	        document.getElementById(audio_id).play();
+            	    })
+            }
+    )
+	
 	$(this).hide();
 })
 
+
+$('#add-word-submit').click(function() {
+	var unfinish = false;
+	var a_word = $('#add-word-name').val();
+	if (a_word == "") {
+		alert("Please input word");
+		unfinish = true;
+	}
+	var a_word_pron = $('#add-word-pron').val();
+	if (a_word_pron == "") {
+		alert("Please input pronciation");
+		unfinish = true;
+	}
+	var a_word_pron_link = $('#add-word-pron-link').val();
+	var a_word_form = $('#add-word-form').val();
+	var a_word_meaning = $('#add-word-meaning').val();
+	if (a_word_form == "" || a_word_meaning == "") {
+		alert("Please input word meaning");
+		unfinish = true;
+	}
+	var a_word_example_english = $('#add-word-example-english').val();
+	var a_word_example_chn = $('#add-word-example-chn').val();
+	
+	if (unfinish == false) {
+		$.post("http://localhost:8080/Java_server/user_define_word", 
+		{
+			user: username,
+			word: a_word,
+			pron: a_word_pron,
+			pron_link: a_word_pron_link,
+			form: a_word_form,
+			meaning: a_word_meaning,
+			sentence_eng: a_word_example_english,
+			sentence_chn: a_word_example_chn   
+		},
+		function(data,status){ 
+			console.log(data);
+			if (data.result != "Success") {
+				alert("You have already add this word!");
+			} else {
+				alert("Succeed!");
+			}
+		})
+	} 
+	
+})
+
+var listlen;
 
 $('#header > nav > ul > li:nth-child(2) > a').click(function(e){
 	$('#myList').empty();
@@ -50,7 +182,7 @@ $('#header > nav > ul > li:nth-child(2) > a').click(function(e){
 	            },
 	            function(data,status,request){
 	            		console.log(data);
-	            		var listlen = data.wordlist.length;
+	            		listlen = data.wordlist.length;
 	            		var click_word = new Array();
 	            		wordlist = data.wordlist;
 	            		
@@ -97,6 +229,7 @@ $('#header > nav > ul > li:nth-child(2) > a').click(function(e){
 			            	                name: username,
 			            	                wordset: wordlist[word_id].wordset,
 			            	                wordid: wordlist[word_id].wordid,
+			            	                word: wordlist[word_id].word,
 			            	                status: 2
 			            	            },
 			            	            function(data,status,request){
@@ -110,6 +243,7 @@ $('#header > nav > ul > li:nth-child(2) > a').click(function(e){
 			            	                name: username,
 			            	                wordset: wordlist[word_id].wordset,
 			            	                wordid: wordlist[word_id].wordid,
+			            	                word: wordlist[word_id].word,
 			            	                status: 3
 			            	            },
 			            	            function(data,status,request){

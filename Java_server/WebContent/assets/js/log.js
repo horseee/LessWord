@@ -116,27 +116,30 @@ $(document).ready(function(){
                     $('.review-goal-today > h3').text("You need to review "+ data.result.review+" words today");
                     if (today_review == 0)
                     		$('#start-review').addClass('disabled');
+                    $('.log-href > text').text('log out');
+                    $('#header > nav > ul > li:nth-child(3) > a > strong').text(username);
+                    $('#header > nav > ul > li:nth-child(3) > a').removeAttr('href');
                 }
                 else {
-                		alert("data.result.info");
+                		alert(data.result.info);
                 }
                 
-                $('.log-href > text').text('log out');
-                $('#header > nav > ul > li:nth-child(3) > a > strong').text(username);
-                $('#header > nav > ul > li:nth-child(3) > a').removeAttr('href');
                 
-                $.get("http://localhost:8080/Java_server/UserStatic", 
-            			{
-                            name: username,
-                        },
-                        function(data,status,request){
-                        		console.log(data);
-                        		recite_data = data.result.recite;
-                        		review_data = data.result.review;
-                        		recite_timelabel = data.result.timelabel;
-                        		label_word_static = data.result.word_total;
-                       }
-                )
+                if (username != "") {
+	                	$.get("http://localhost:8080/Java_server/UserStatic", 
+	                			{
+	                                name: username,
+	                            },
+	                            function(data,status,request){
+	                            		console.log(data);
+	                            		recite_data = data.result.recite;
+	                            		review_data = data.result.review;
+	                            		recite_timelabel = data.result.timelabel;
+	                            		label_word_static = data.result.word_total;
+	                           }
+	                    )
+                }
+                
             })
     });
 

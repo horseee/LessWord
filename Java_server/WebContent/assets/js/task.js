@@ -31,6 +31,7 @@ $(document).ready(function () {
     		                name: username,
     		                wordset: wordlist[wordptr-1].wordset,
     		                wordid: wordlist[wordptr-1].wordid,
+    		                word: wordlist[wordptr-1].word,
     		                status: 3
     		            },
     		            function(data,status,request){
@@ -45,6 +46,7 @@ $(document).ready(function () {
     		                name: username,
     		                wordset: wordlist[wordptr-1].wordset,
     		                wordid: wordlist[wordptr-1].wordid,
+    		                word: wordlist[wordptr-1].word,
     		                status: 2
     		            },
     		            function(data,status,request){
@@ -67,6 +69,9 @@ $(document).ready(function () {
     var today_task = 0;
 
     $(".start-task").click(function(){
+    		$('.word-container').empty();
+    		$('.back').hide();
+    		isFront = true;
     		if ($(this).attr('id') == "start-recite") {
     			for (var i=0; i<today_recite; i++) {
         			myWordLike[i] = 0
@@ -239,6 +244,7 @@ $(document).ready(function () {
             	                name: username,
             	                wordset: wordlist[wordptr-1].wordset,
             	                wordid: wordlist[wordptr-1].wordid,
+            	                word: wordlist[wordptr-1].word,
             	                status: task_now_dst
             	            },
             	            function(data,status,request){
@@ -353,6 +359,7 @@ $(document).ready(function () {
     });
     
     $('.fa-arrow-right').click(function(){
+    		isFront = true;
     		$('#thumb-' + wordptr).find('.back').css('background-color', originPtrColor);
     		wordptr = wordptr + 1;
 		setWordContent();

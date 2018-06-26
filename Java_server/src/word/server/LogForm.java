@@ -45,7 +45,7 @@ public class LogForm extends HttpServlet {
 		} 
 		
 		int review_count = 0;
-		if (res == null) {
+		if (res == null || res[0] == null) {
 			ResInfo = "Username(email)/Password wrong";
 			statusRes = false;
 		}

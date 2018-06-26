@@ -8,15 +8,28 @@
 */
 
 /* Reset */
-
-	.log-href {
-		z-index: 4;
-		position: fixed;
-		margin-left: 92%;
-		font-weight: 900;
-		margin-top: 0.7rem;
-		color: rgba(255, 255, 255, 0.4);
-		border-bottom: 0.1rem solid rgba(255, 255, 255, 0.4);
+	 @media screen and (max-width: 640px) { 
+		.log-href {
+			z-index: 4;
+			position: fixed;
+			margin-left: 85%;
+			font-weight: 900;
+			margin-top: 0.7rem;
+			color: rgba(255, 255, 255, 0.4);
+			border-bottom: 0.1rem solid rgba(255, 255, 255, 0.4);
+		}
+	}
+	
+	@media screen and (min-width: 640px) { 
+		.log-href {
+			z-index: 4;
+			position: fixed;
+			margin-left: 92%;
+			font-weight: 900;
+			margin-top: 0.7rem;
+			color: rgba(255, 255, 255, 0.4);
+			border-bottom: 0.1rem solid rgba(255, 255, 255, 0.4);
+		}
 	}
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {

@@ -54,6 +54,19 @@
         height: 20rem;
         padding: 2rem;
       }
+      
+      	.right-arrow,
+	    .refresh{
+	      flex: 0 0 10%;
+	      width: 3rem;
+	      height: 3rem;
+	      margin: auto;
+	      line-height: 3rem;
+	      text-align: center;
+	      display: flex;
+	      flex-direction: column;
+	      justify-content: space-around;
+	    }
     }
 
     @media screen and (max-width: 640px) { 
@@ -75,20 +88,25 @@
         height: 30rem;
         padding: 2rem;
       }
+      
+       .right-arrow,
+	    .refresh{
+	      flex: 0 0 10%;
+	      width: 3rem;
+	      height: 3rem;
+	      margin: auto;
+	      line-height: 3rem;
+	      text-align: center;
+	      display: flex;
+	      flex-direction: row;
+	      justify-content: space-around;
+	    }
+      
     }
 
-    .right-arrow,
-    .refresh{
-      flex: 0 0 10%;
-      width: 3rem;
-      height: 3rem;
-      margin: auto;
-      line-height: 3rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
+
+
+    
     
     .left-arrow {
     	  flex: 0 0 10%;
@@ -317,6 +335,7 @@
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
+      
     }
 
     @media screen and (max-width: 640px) {
@@ -325,7 +344,14 @@
         flex-direction: row;
         align-items: center;
         padding: 1.5rem;
-        margin-top: 3rem;
+      }
+      
+      .back .word-info #pron {
+      	margin-bottom: 2rem;
+      }
+      
+      .fa-heart {
+      	margin-left: 3rem;
       }
     }
 
@@ -390,10 +416,19 @@
 
 
 /*下方单词显示方块区域*/
-    .word-container {
-      margin: 3rem auto;
-      width: 78%;
-    }
+	 @media screen and (min-width: 640px) {
+	    .word-container {
+	      margin: 3rem auto;
+	      width: 78%;
+	    }
+	}
+	
+	@media screen and (max-width: 640px) {
+	    .word-container {
+	      margin-left: 3%;
+	      width: 100%;
+	    }
+	}
 
     .thumb {
         position: relative;

@@ -32,12 +32,16 @@ public class GetImportantWord extends HttpServlet {
 		String name =new String(request.getParameter("name"));
         
         String[] wordres = null;
+        String[] userres = null;
         boolean statusRes = false;
         String ResInfo = null;
         int wordnumber = 0;
+        int add_wordnumber = 0;
 		try {
 			wordres = SQL.get_important_word_for_user(name);
 			wordnumber = wordres.length  / 3;
+			userres = SQL.get_define_word_for_user(name);
+			add_wordnumber = userres.length / 7;
 		} catch (Exception e) {
 			statusRes = false;
 			e.printStackTrace();
@@ -75,8 +79,34 @@ public class GetImportantWord extends HttpServlet {
 		            map.put("sample_chinese", wordinfo[11]);
 		            map.put("sample_link", wordinfo[12]);
 		            list.add(map); 
-		       
 				}
+				
+				for (int i=0; i<add_wordnumber; i++) {
+					statusRes = true;
+		            
+		            Map<String , Object> map = new HashMap<String ,Object>();  
+		            map.put("word", userres[i * 7]); 
+		            map.put("wordset", -1);
+		            map.put("wordid", -1);
+		            map.put("pron", userres[i * 7 + 1]);
+		            map.put("pronlink", userres[i * 7 + 2]);
+		            
+		            List<Object> deflist = new ArrayList<Object>();
+		            
+		            		Map<String , Object> defmap = new HashMap<String ,Object>();  
+		            		defmap.put("form", userres[i * 7 + 3]);
+		            		defmap.put("meaning", userres[i * 7 + 4]);
+		            		deflist.add(defmap);
+		            
+		            map.put("definition", deflist);
+		            
+		            map.put("sample_english", userres[i * 7 + 5]);
+		            map.put("sample_chinese", userres[i * 7 + 6]);
+		            map.put("sample_link", "");
+		            list.add(map); 
+				}
+				
+				
 				jsonObject.put("wordlist", list);  
 			} catch (Exception e) {
 				statusRes = false;

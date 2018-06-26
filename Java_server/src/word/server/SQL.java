@@ -25,6 +25,7 @@ public class SQL {
     static final String SqlInsertOperation[] = {"insert into User (name, email, password, portrait, cet4, cet6, toefl, day) values (?, ?, ?, ?, ?, ?, ?, ?)",  //operation 0
     											   "insert into ",  //operation 1
     											   "_word (label, wordbook, wordid) values (?, ?, ?)", //operation 2
+    											   "insert into user_define (username, word, pron, pronlink, def_form, def_mean, sample_eng, sample_chn, label) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", //operation 3
     									""};
     static final String SqlSelectOperation[] = {"select * from User where name = ?",   //operation 0
     											   "select * from User where email = ?",  //operation 1   
@@ -40,11 +41,14 @@ public class SQL {
     											   "_word group by label",//operation 11
     											   "_word where label = 0 and TO_DAYS(NOW()) - TO_DAYS(review_time) = ?",  //operation 12
     											   "_word where label = 1 and TO_DAYS(NOW()) - TO_DAYS(recite_time) = ?",  //operation 13
+    											   "select * from user_define where username = ? and label = 3", //operation 14
+    											   "select label, count(*) from ", //operation 15
     											   
     									""};
-    static final String SqlCreateOperation[] = {"create table ","_word( label int, wordbook int, wordid int, recite_time date, primary key(wordbook, wordid))"};
+    static final String SqlCreateOperation[] = {"create table ","_word( label int, wordbook int, wordid int, recite_time date, review_time date, primary key(wordbook, wordid))"};
     static final String SqlUpdateOperation[] = {"update ","_word set label = ?, recite_time = ? where wordbook = ? and wordid = ?", //operation 1
     												"_word set label = ?, review_time = ? where wordbook = ? and wordid = ?", //operation 2
+    												"update user_define set label = ? where username = ? and word = ?",//operation 3
     												""};
     
     public static void insert(int operator, String[] data ) throws SQLException, ClassNotFoundException {
@@ -57,6 +61,7 @@ public class SQL {
             for (int i=1; i<=data.length; i++) {
             		psql.setString(i, data[i-1]);
             }
+            System.out.println(psql);
             psql.executeUpdate(); 
             
             psql.close();
@@ -72,13 +77,14 @@ public class SQL {
         try{
         		Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
-    		    PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[10] + name +SqlSelectOperation[11]);
+    		    PreparedStatement psql = conn.prepareStatement(SqlSelectOperation[15] + name +SqlSelectOperation[11]);
     		    ResultSet rs = psql.executeQuery(); 
     		    
-    		    int ptr = 0;
+    		    int ptr;
     		    while (rs.next()) {
+    		    		ptr = rs.getInt("label");
     		    		user_info[ptr] = rs.getInt("count(*)");
-    		    		ptr ++;
+    		    		System.out.println(ptr);
     		    }
     		    psql.close();
     	        conn.close();
@@ -149,7 +155,7 @@ public class SQL {
 	    }
     }
     
-    public static void change_word_status(String username, int wordset, int wordid, int status) throws SQLException, ClassNotFoundException{
+    public static void change_word_status(String username, int wordset, int wordid, int status, String word) throws SQLException, ClassNotFoundException{
 	    	Connection conn = null;
 	    	ResultSet rs = null;
 	    	int count = 0;
@@ -161,7 +167,16 @@ public class SQL {
 	        String strdate = sdf.format(new Date());
 	        
 	        PreparedStatement psql;
-	        if (status == 1) {
+	        if (wordset == -1) {
+	        		psql = conn.prepareStatement(SqlUpdateOperation[3]);
+	        		psql.setInt(1, status);
+	        		psql.setString(2, username);
+	        		psql.setString(3, word);
+	        		System.out.println(psql);
+	        		psql.executeUpdate();
+	        		conn.close();
+	        		return;
+	        } else if (status == 1) {
 	        		psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[1]);
 	        } else if (status == 0){
 	        		psql = conn.prepareStatement(SqlUpdateOperation[0] + username + SqlUpdateOperation[2]);
@@ -430,5 +445,47 @@ public class SQL {
 	        if(conn!=null) conn.close();
 	    }
 	}
+	
+	public static String[] get_define_word_for_user(String username) throws SQLException, ClassNotFoundException{
+		Connection conn = null;
+	    	ResultSet rs = null;
+	    	int count = 0;
+	    try {
+	        Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	        
+	        PreparedStatement psql = null;
+	       
+	        	psql = conn.prepareStatement(SqlSelectOperation[14]);
+	        	psql.setString(1, username);
+	        rs = psql.executeQuery(); 
+	        
+	        rs.last();
+	        int word_number = rs.getRow();
+	        rs.beforeFirst();
+	        String[] word_package = new String[word_number * 7];
+	        
+	        PreparedStatement psql_select = null;
+	        int ptr = 0;
+	        //username, word, pron, pronlink, def_form, def_mean, sample_eng, sample_chn, label
+	        while (rs.next()) {
+	        		word_package[ptr *7 + 0] = rs.getString("word");
+	        		word_package[ptr *7 + 1] = rs.getString("pron");
+	        		word_package[ptr *7 + 2] = rs.getString("pronlink");
+	        		word_package[ptr *7 + 3] = rs.getString("def_form");
+	        		word_package[ptr *7 + 4] = rs.getString("def_mean");
+	        		word_package[ptr *7 + 5] = rs.getString("sample_eng");
+	        		word_package[ptr *7 + 6] = rs.getString("sample_chn");
+	        		ptr ++;
+	        }
+        		psql.close();
+    	        conn.close();
+    	        
+    	        return word_package;
+	    } finally{
+	        if(conn!=null) conn.close();
+	    }
+	}
+
 
 }
