@@ -1,0 +1,377 @@
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>LESSWord</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/task.css"/>
+		<link rel="stylesheet" href="assets/css/wordbook.css"/>
+		<link rel="stylesheet" href="assets/css/user.css"/>
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+		<div ><a class="log-href" href="#log">&nbsp;&nbsp;<text>log in</text>&nbsp;&nbsp;</a></div>
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-grav"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>LESSWORD</h1>
+								<p><strong>Simplified</strong> and <strong>Minimalist</strong></p>
+								<p>A simple website with only <strong>words</strong> and <strong>words</strong> and <strong>words</strong>.<br>Sigh Up and I will finish everything for you.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#task">Task</a></li>
+								<li><a href="#WordBook">WordBook</a></li>
+								<li><a href="#log"><strong>Log</strong></a></li>
+								<li><a href="#user">User</a></li>
+								<li><a href="#about">About</a></li>
+								
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="task">
+								
+								<h2 class="Today's Task">Task Today</h2>
+
+								<div class="slide-container">
+									<div class="left-arrow refresh">
+										<span class="icon fa-refresh"></span>
+										<span class="icon fa-heart"></span>
+									</div>
+
+									<div class="card">
+										<div class="login-first">
+											<h4> I don't know who you are. Please <strong> log in </strong> first</h4>
+											<button class="to-log"> Click me to Log in</button>
+										</div>
+										<div class="recite-goal-today">
+											<h3> You need to recite 100 words today</h3>
+											<button class="start-task" id = "start-recite">start!</button>
+										</div>
+										<div class="cut-line"></div>
+										<div class="review-goal-today">
+											<h3> You need to review 100 words today</h3>
+											<button class="start-task" id = "start-review">start!</button>
+										</div>
+										<div class="front">
+											<div class="word-info">
+												<div class="word-literal">
+													familiar
+												</div>
+												<div class="icon fa-play-circle" id="pron">
+													<audio src="http://res.iciba.com/resource/amp3/1/0/cd/81/cd8193113f5c74760eeb2531430e43c3.mp3" id="audio">
+													</audio>
+													<div class="word-pron">
+														[fəˈmɪliə(r)]
+													</div>
+												</div>
+											</div>
+											<div class="word-line">
+											</div>
+											<div class="word-detail">
+												<div class="word-example-eng">
+													Require candidates to become <strong>familiar</strong> with the construction process, <strong>familiar</strong> with the decorating process technology operations.
+												</div>
+												<div class="icon fa-question-circle" id = "show-translate"> </div>
+												<div class="word-tooltip">
+													要求应聘者熟悉了解施工工艺, 熟悉装潢工艺操作流程
+												</div>
+											</div>
+										</div>
+
+										<div class="back">
+											<div class="word-info">
+												<div class="word-input-box" id = "input_box_default">
+													
+												</div>
+												<div class="word-input-box" id = "input_box_spare">
+													
+												</div>
+												<div class="icon fa-play-circle" id="pron">
+													<audio src="http://res.iciba.com/resource/amp3/1/0/cd/81/cd8193113f5c74760eeb2531430e43c3.mp3" id="audio">
+													</audio>
+													<div class="word-pron">
+														[fəˈmɪliə(r)]
+													</div>
+												</div>
+											</div>
+											<div class="word-line">
+											</div>
+											<div class="word-detail">
+											</div>
+									  	</div>
+
+									</div> 
+									<div class="right-arrow arrow">
+										<span class="icon fa-arrow-right arrow"></span>
+									</div>
+								</div>
+							
+
+								<div class="word-container">
+							        
+							    </div>
+
+							</article>
+
+						<!-- WordBook -->
+							<article id="WordBook">
+								<div class="insert-box">
+									<h2 class="major" style="margin-bottom: 3rem">WordBook</h2>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<div class="icon fa-plus-square-o"></div>
+									<div class="icon fa-minus-square-o"></div>
+								</div>
+								<div class="add-word">
+									<h2 class="major" style="font-size: 1.2rem;letter-spacing: 0.2rem;"> add your word</h2>
+									<div class="field half">
+										<label for="add-word-name">word</label>
+										<input type="text" id="add-word-name" value=""  />
+									</div>
+									<div class = "one-line-add">
+										<div class="field one-third">
+											<label for="add-word-pron">pronuncation</label>
+											<input type="text" id="add-word-pron" value=""  />
+										</div>
+										<div class="field two-third">
+											<label for="add-word-pron-link">pronuncation link</label>
+											<input type="text" id="add-word-pron-link" value=""  />
+										</div>
+									</div>
+									<div class = "one-line-add">
+										<div class="field one-third">
+											<label for="add-word-form">form(adj./n.)</label>
+											<input type="text" id="add-word-form" value=""  />
+										</div>
+										<div class="field two-third">
+											<label for="add-word-meaning">meaning</label>
+											<input type="text" id="add-word-meaning" value=""  />
+										</div>
+									</div>
+									<div class="field" style="margin-top: 1.2rem">
+										<label for="add-word-example-english">Example Sentence (Eng)</label>
+										<input type="text" id="add-word-example-english" value=""  />
+									</div>
+									<div class="field" style="margin-top: 1.2rem">
+										<label for="add-word-example-chn">Example Sentence (Chinese)</label>
+										<input type="text" id="add-word-example-chn" value=""  />
+									</div>
+									<button type="add-word-submit" value="add-word-submit" class="special board" id="add-word-submit">Submit</button>
+								</div>
+
+								<ul class="rolldown-list" id="myList">
+								  	
+								</ul> 
+							</article>
+
+						<!-- Log/Sign -->
+							<article id="log">
+								<div class="log_out">
+									<h2 class="major">Sign Out</h2>
+									<button type="SignOut" value="LogOut" class="special board" id="OutSubmit" style = "margin-bottom: 10rem;">Log Out</button>
+								</div>
+								<div class="log_in_and_up">
+									<h2 class="major">Sign In</h2>
+									<form name='logform'>
+										<div class="field first">
+											<label for="username">Name/Email</label>
+											<input type="text" name="username" id="LogName" placeholder="Meimei Han" />
+										</div>
+										<div class="field">
+											<label for="password">Password</label>
+											<input type="password" name="logPassword" id="LogPassword" />
+										</div>
+										<ul class="actions">
+											<li><button type="register" value="Log" class="special board" id="LogSubmit">Log</button></li>
+										</ul>
+									</form>
+									<hr>
+									<h2 class="major">Sign Up</h2>
+									<form name='logform'>
+									<div class="flex">
+										<div class="half">
+											<div class="field first" id="DivName">
+												<label for="name">Nickname</label>
+												<input type="text" id="SignName" placeholder="Meimei Han" />
+												<p type="alert" name="NameAlert">This username has been registered</p>
+											</div>
+											<div class="field" id="DivEmail">
+												<label for="email">Email</label>
+												<input type="text" id="SignEmail" placeholder="LiLei@zju.edu.cn" />
+												<p type="alert" name="EmailAlert">This email has been registered</p>
+											</div>
+											<div class="field" id="DivPassword">
+												<label for="password">Password</label>
+												<input type="password" name="signpassword" id="SignPassword" />
+												<p type="alert" name="PasswordAlert">Password should be 6-16 characters</p>
+											</div>
+											<div class="field">
+												<label for="choosebook">Choose Word Set</label>
+												<div class="field">
+													<input type="checkbox" id="dic-cet4" name="dic-cet4">
+													<label for="dic-cet4">CET4 (3596 words)</label>
+													<input type="checkbox" id="dic-cet6" name="dic-cet6">
+													<label for="dic-cet6">CET6 (core, 1000words)</label>
+													<input type="checkbox" id="dic-toefl" name="dic-cet6">
+													<label for="dic-toefl">TOEFL (4680 words)</label>
+												</div>
+											</div>
+											<div class="field">
+												<label for="chooseday">Learning Periods</label>
+												<div id="day-slider"></div>
+												<p type="alert" name="DayAlert">30 days. About 0 words per day.</p>
+											</div>
+										</div>
+										<div class="half">
+											<div class="flex center">
+												<div class="portrait" style="margin-top:3rem">
+													<span class="icon fa-user"></span>
+												</div>
+											</div>
+											<div class="field" style="margin-top:2rem">
+												<label for="photo" class="center">Choose Your Portrait</label>
+											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-1">
+														<span class="icon fa-ship"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-2">
+														<span class="icon fa-motorcycle"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-3">
+														<span class="icon fa-rocket"></span>
+													</div>
+											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-4">
+														<span class="icon fa-github-alt"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-5">
+														<span class="icon fa-reddit-alien"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-6">
+														<span class="icon fa-pagelines"></span>
+													</div>
+											</div>
+											<div class="choosen-portrait-box">
+													<div class="portrait-choose" id="portrait-choose-7">
+														<span class="icon fa-connectdevelop"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-8">
+														<span class="icon fa-odnoklassniki"></span>
+													</div>
+													<div class="portrait-choose" id="portrait-choose-9">
+														<span class="icon fa-ge"></span>
+													</div>
+											</div>
+											
+											
+											
+										</div>
+									</div>
+									<ul class="actions flex">
+										<li><button type="register" value="Register" class="special board" id="Register">Register</button></li>
+										<li><button type="reset" value="Reset" class="board">Reset</button></li>
+									</ul>
+								</form>
+								</div>
+							</article>
+							
+						<!-- user -->
+							<article id = "user">
+							
+								<h2 class="major">Statistic</h2>
+								<div class="data-total-box">
+									<div class="finish-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Finish:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="review-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Recite:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="remain-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Remain:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+									<div class="important-data-box">
+										<div class="icon fa-circle-o"></div>
+										<div >&nbsp;&nbsp;Important:&nbsp;&nbsp;</div>
+										<text class="label-class"></text>
+									</div>
+	
+								</div>
+								<div class="log-first-static">
+									<h3 style="margin-top: 3rem"> I don't know who you are. Please <strong> log in </strong> first</h3>
+									<button class="to-log-static"> Click me to Log in</button>
+								</div>
+								
+								<canvas id="myChart" width="800" height="400" style="margin-top: 5rem"></canvas>
+							
+							</article>	
+							
+							<article id = "about">
+								<h2 class="major">About</h2>
+								<h4>欢迎来到lessword。</h4>
+								<h4>希望你能在这里体会到极简且高效的背单词方式。</h4>
+								<br>
+								<h4>TASK 里面是你需要完成的任务</h4>
+								<h4>WORDBOOK是你自己定义的单词本</h4>
+								<h4>USER里呈现的是你的背单词数据</h4>
+								<br>
+								<h4>如果你发现任何的问题，欢迎点击主界面最下方的horseee，并在我的repo中告诉我～</h4>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; <a href="https://github.com/horseee">Horseee</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/swiper.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/log.js"></script>
+			<script src="assets/js/task.js"></script>
+			<script src="assets/js/GetWord.js"></script>
+			<script src="assets/js/wordbook.js"></script>
+			<script src="assets/js/user.js"></script>
+			
+
+
+	</body>
+</html>
